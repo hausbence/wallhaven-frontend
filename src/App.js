@@ -15,6 +15,14 @@ const App = () => {
 
   if (wallpapers) {
     console.log(wallpapers.data.data);
+    wallpapers.data.data.forEach(item => {
+      if (item.category === "anime"){
+        const index = wallpapers.data.data.indexOf(item);
+        if (index > -1) {
+          wallpapers.data.data.splice(index, 1);
+        }
+      }
+    })
     content = (
       <div>
         {wallpapers.data.data.map((wallpaper) => (

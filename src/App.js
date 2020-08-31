@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const [wallpapers, setWallpapers] = useState(null);
+
+  useEffect(() => {
+    axios.get("https://wallhaven.cc/api/v1/search").then((res) => {
+      setWallpapers(res);
+    });
+  }, []);
+
+  let content = "Loading...";
+
+  if (wallpapers) {
+    console.log(wallpapers.data.data);
+    content = (
+      <div>
+        {wallpapers.data.data.map((wallpaper) => (
+          <img
+            src={wallpaper.thumbs.small}
+            alt="Wallpaper"
+            key={wallpaper.thumbs.small}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  return <div className="App">{content}</div>;
+};
 
 export default App;

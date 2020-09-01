@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
+import Header from "./components/layout/Header";
+import Navbar from "./components/layout/Navbar";
+import WallpaperList from "./components/pages/WallpaperList";
 
 const App = () => {
   const [wallpapers, setWallpapers] = useState(null);

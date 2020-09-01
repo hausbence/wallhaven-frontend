@@ -1,0 +1,57 @@
+.btn {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #aaaaaa;
+}
+
+.btn:hover {
+    background-color: #888888;
+}
+
+.img {
+    position: absolute;
+    height: 80%;
+    width: 80%;
+    top: 10%;
+    right: 0;
+    bottom: 0;
+    display: block;
+    margin: auto;
+    max-width: 95%;
+    max-height: 95%;
+    border: 5px solid #555;
+}
+
+.sb-img {
+    color: white;
+}
+
+.res {
+    font-size: 33px;
+    color: white;
+    text-align: center;
+    margin-block-start: 10px;
+    margin-block-end: 20px;}
+
+.tag-title {
+    font-size: 33px;
+    color: white;
+    text-align: left;
+    margin-inline-start: 7px;
+    margin-block-start: 10px;
+    margin-block-end: 20px;
+}
+
+.link {
+    color: white;
+    text-align: center;
+    margin-inline-start: 7px;
+}
+
+.properties {
+    margin-inline-start: 20px;
+    text-align: left;
+    font-size: small;
+}

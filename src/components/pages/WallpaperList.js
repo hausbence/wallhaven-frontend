@@ -12,6 +12,7 @@ const WallpaperList = () => {
 
   let content = <p>Loading...</p>;
 
+
   if (!isLoading && wallpapers) {
     console.log(wallpapers);
     content = (

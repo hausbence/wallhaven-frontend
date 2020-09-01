@@ -6,8 +6,9 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <Link to="/">Home</Link>
-      <Link to="/wallpapers">Wallpapers</Link>
-      <Link to="/">Latest</Link>
+      <Link to="/random">Random</Link>
+      <Link to="/toplist">Toplist</Link>
+      <Link to="/latest">Latest</Link>
     </div>
   );
 };

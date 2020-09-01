@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useHttp } from "../../hooks/http";
 
-const WallpaperList = () => {
-  const [wallpaperUrl, setWallpaperUrl] = useState(
-    "https://wallhaven.cc/api/v1/search?categories=100&purity=100"
-  );
+const WallpaperList = (props) => {
+  const [wallpaperUrl, setWallpaperUrl] = useState(props.url);
+  const [limit] = useState(props.limit);
 
-  const [isLoading, fetchedData] = useHttp(wallpaperUrl, [wallpaperUrl]);
+  const [isLoading, fetchedData] = useHttp(wallpaperUrl, [wallpaperUrl, limit]);
 
   const wallpapers = fetchedData ? fetchedData.data.data : null;
 
@@ -17,7 +16,7 @@ const WallpaperList = () => {
     content = (
       <React.Fragment>
         <div>
-          {wallpapers.map((wallpaper) => (
+          {wallpapers.slice(0, parseInt(props.limit)).map((wallpaper) => (
             <img
               src={wallpaper.thumbs.small}
               alt="Wallpaper"

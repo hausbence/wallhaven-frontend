@@ -12,7 +12,43 @@ const App = () => {
         <div className="App">
           <Header />
           <Navbar />
-          <Route path="/wallpapers" render={(props) => <WallpaperList />} />
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <WallpaperList
+                url="https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc"
+                limit="18"
+              />
+            )}
+          />
+          <Route
+            path="/random"
+            render={(props) => (
+              <WallpaperList
+                url="https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc"
+                limit="24"
+              />
+            )}
+          />
+          <Route
+            path="/toplist"
+            render={(props) => (
+              <WallpaperList
+                url="https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=toplist&order=desc&topRange=1y"
+                limit="24"
+              />
+            )}
+          />
+          <Route
+            path="/latest"
+            render={(props) => (
+              <WallpaperList
+                url="https://wallhaven.cc/api/v1/search?categories=111&purity=001"
+                limit="24"
+              />
+            )}
+          />
         </div>
       </Router>
     </React.Fragment>

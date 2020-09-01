@@ -3,7 +3,7 @@ import { useHttp } from "../../hooks/http";
 
 const WallpaperList = () => {
   const [wallpaperUrl, setWallpaperUrl] = useState(
-    "https://wallhaven.cc/api/v1/search"
+    "https://wallhaven.cc/api/v1/search?categories=100&purity=100"
   );
 
   const [isLoading, fetchedData] = useHttp(wallpaperUrl, [wallpaperUrl]);
@@ -13,15 +13,10 @@ const WallpaperList = () => {
   let content = <p>Loading...</p>;
 
   if (!isLoading && wallpapers) {
+    console.log(wallpapers);
     content = (
       <React.Fragment>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-evenly",
-          }}
-        >
+        <div>
           {wallpapers.map((wallpaper) => (
             <img
               src={wallpaper.thumbs.small}

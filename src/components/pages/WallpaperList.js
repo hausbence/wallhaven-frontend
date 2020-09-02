@@ -14,6 +14,7 @@ const WallpaperList = (props) => {
   );
 
   console.log(isLoading);
+  // console.log(props.props.location.inputValue);
 
   useEffect(() => {
     if (fetchedData) {

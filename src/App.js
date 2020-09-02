@@ -55,6 +55,17 @@ const App = () => {
               />
             )}
           />
+          <Route
+            path="/search"
+            render={(props) => (
+              <WallpaperList
+                url="https://wallhaven.cc/api/v1/search?categories=100&purity=100"
+                limit="24"
+                page="1"
+                props={props}
+              />
+            )}
+          />
           <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
         </div>
       </Router>

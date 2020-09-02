@@ -3,6 +3,7 @@ import {useHttp} from "../../../hooks/http";
 import res from './resolution.png'
 import styled from 'styled-components'
 import './SingleWallpaper.css'
+import loadingGif from "../../../loading2.gif";
 
 const SingleWallpaper = (props) => {
     const [current, setCurrent] = useState(props)
@@ -13,7 +14,7 @@ const SingleWallpaper = (props) => {
 
     const wallpaper = fetchedData ? fetchedData.data.data : null;
 
-    let content = <p>Loading...</p>;
+    let content = <div className={"loading-container"}><img src={loadingGif} alt={"loading"}/></div>
 
     function selectionSetter() {
         let value = document.getElementById("sources").value;

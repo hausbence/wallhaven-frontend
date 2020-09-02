@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHttp } from "../../hooks/http";
 import {Link} from "react-router-dom";
+import loadingGif from '../../loading2.gif'
 
 const LatestWallpaperList = () => {
     const [wallpaperUrl, setWallpaperUrl] = useState(
@@ -11,7 +12,7 @@ const LatestWallpaperList = () => {
 
     const wallpapers = fetchedData ? fetchedData.data.data : null;
 
-    let content = <p>Loading...</p>;
+    let content = <div className={"loading-container"}><img src={loadingGif} alt={"loading"}/></div>
 
 
     const getLink = (id) => {

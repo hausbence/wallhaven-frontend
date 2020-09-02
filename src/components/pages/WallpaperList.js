@@ -33,7 +33,10 @@ const WallpaperList = (props) => {
       <React.Fragment>
         <div>
           {wallpapers.slice(0, limit).map((wallpaper) => (
-            <Link to={"/wallpaper/" + wallpaper.id}>
+            <Link
+              to={"/wallpaper/" + wallpaper.id}
+              key={wallpaper.thumbs.small}
+            >
               <img
                 src={wallpaper.thumbs.small}
                 alt="Wallpaper"

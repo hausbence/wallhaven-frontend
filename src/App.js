@@ -49,10 +49,9 @@ const App = () => {
                 url="https://wallhaven.cc/api/v1/search?categories=100&purity=100"
                 limit="24"
               />
-           <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
             )}
           />
-
+          <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
         </div>
       </Router>
     </React.Fragment>

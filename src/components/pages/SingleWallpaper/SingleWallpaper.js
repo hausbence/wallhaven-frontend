@@ -5,7 +5,7 @@ import "./SingleWallpaper.css";
 import loadingGif from "../../../loading2.gif";
 
 const SingleWallpaper = (props) => {
-  const [current, setCurrent] = useState(props);
+  const [current] = useState(props);
   const [img, setImg] = useState(null);
 
   const wallpaperUrl = `https://wallhaven.cc/api/v1/w/${[
@@ -21,22 +21,25 @@ const SingleWallpaper = (props) => {
     </div>
   );
 
-    function selectionSetter() {
-        let value = document.getElementById("sources").value;
-        if (wallpaper && !isLoading) {
-            switch (value) {
-                case "large":
-                    setImg(wallpaper.path)
-                    break;
-                case "medium":
-                    setImg(wallpaper.thumbs.large);
-                    break;
-                case "small":
-                    setImg(wallpaper.thumbs.small);
-                    break;
-            }
-        }
+  function selectionSetter() {
+    let value = document.getElementById("sources").value;
+    if (wallpaper && !isLoading) {
+      switch (value) {
+        case "large":
+          setImg(wallpaper.path);
+          break;
+        case "medium":
+          setImg(wallpaper.thumbs.large);
+          break;
+        case "small":
+          setImg(wallpaper.thumbs.small);
+          break;
+        default:
+          setImg(wallpaper.thumbs.small);
+          break;
+      }
     }
+  }
 
   const SideBar = styled.div`
     border: 2px solid black;
@@ -106,9 +109,9 @@ const SingleWallpaper = (props) => {
         <SideBar>
           <IconContainer>
             <p className={"res"}>{wallpaper.resolution}</p>
-            <a className="link" href="#">
+            {/* <a className="link" href="#">
               Search for similar...
-            </a>
+            </a> */}
             <a
               className="link"
               href="https://www.artstation.com/artwork/8lvmER"

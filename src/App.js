@@ -5,7 +5,7 @@ import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
 import WallpaperList from "./components/pages/WallpaperList";
 import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper";
-import LatestWallpaperList from "./components/pages/LatestWallpaperList";
+// import LatestWallpaperList from "./components/pages/LatestWallpaperList";
 
 const App = () => {
   return (
@@ -21,6 +21,7 @@ const App = () => {
               <WallpaperList
                 url="https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc"
                 limit="18"
+                mainpage="true"
               />
             )}
           />
@@ -30,6 +31,7 @@ const App = () => {
               <WallpaperList
                 url="https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc"
                 limit="24"
+                page="1"
               />
             )}
           />
@@ -39,6 +41,7 @@ const App = () => {
               <WallpaperList
                 url="https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=toplist&order=desc&topRange=1y"
                 limit="24"
+                page="1"
               />
             )}
           />
@@ -48,6 +51,7 @@ const App = () => {
               <WallpaperList
                 url="https://wallhaven.cc/api/v1/search?categories=100&purity=100"
                 limit="24"
+                page="1"
               />
             )}
           />

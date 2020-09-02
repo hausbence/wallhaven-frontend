@@ -4,6 +4,8 @@ import "./App.css";
 import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
 import WallpaperList from "./components/pages/WallpaperList";
+import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper";
+import LatestWallpaperList from "./components/pages/LatestWallpaperList";
 
 const App = () => {
   return (
@@ -47,8 +49,10 @@ const App = () => {
                 url="https://wallhaven.cc/api/v1/search?categories=100&purity=100"
                 limit="24"
               />
+           <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
             )}
           />
+
         </div>
       </Router>
     </React.Fragment>

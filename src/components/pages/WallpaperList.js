@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHttp } from "../../hooks/http";
+import {Link} from "react-router-dom";
+import loadingGif from '../../loading2.gif'
+
 
 const WallpaperList = (props) => {
   const [wallpaperUrl, setWallpaperUrl] = useState(props.url);
@@ -16,7 +19,12 @@ const WallpaperList = (props) => {
     console.log("useeffect end");
   }, [fetchedData]);
 
-  let content = <p>Loading...</p>;
+  let content = <div className={"loading-container"}><img src={loadingGif} alt={"loading"}/></div>
+
+
+  const getLink = (id) => {
+    return "wallpaper/" + id;
+  }
 
   if (wallpapers) {
     content = (
@@ -28,6 +36,7 @@ const WallpaperList = (props) => {
               alt="Wallpaper"
               key={wallpaper.thumbs.small}
             />
+              </Link>
           ))}
         </div>
       </React.Fragment>

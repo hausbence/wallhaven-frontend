@@ -4,18 +4,21 @@ import { Link } from "react-router-dom";
 import loadingGif from "../../loading2.gif";
 
 const WallpaperList = (props) => {
-  const [wallpaperUrl, setWallpaperUrl] = useState(props.url);
+  const [wallpaperUrl] = useState(props.url);
   const [limit] = useState(parseInt(props.limit));
+  const [page, setPage] = useState(parseInt(props.page));
   const [wallpapers, setWallpapers] = useState([]);
-  const [isLoading, fetchedData] = useHttp(wallpaperUrl, [wallpaperUrl, limit]);
+  const [isLoading, fetchedData] = useHttp(
+    wallpaperUrl + "&page=" + page.toString(),
+    [(wallpaperUrl, limit, page)]
+  );
+
+  console.log(isLoading);
 
   useEffect(() => {
-    console.log("useeffect start");
-    console.log(isLoading);
     if (fetchedData) {
       setWallpapers(fetchedData.data.data);
     }
-    console.log("useeffect end");
   }, [fetchedData]);
 
   let content = (
@@ -24,9 +27,30 @@ const WallpaperList = (props) => {
     </div>
   );
 
-  const getLink = (id) => {
-    return "wallpaper/" + id;
-  };
+  let pageButtons = (
+    <div>
+      <button
+        onClick={() => {
+          if (fetchedData.data.meta.current_page > 1) {
+            setPage(page - 1);
+          }
+        }}
+      >
+        Previous
+      </button>
+      <button
+        onClick={() => {
+          if (
+            fetchedData.data.meta.current_page < fetchedData.data.meta.last_page
+          ) {
+            setPage(page + 1);
+          }
+        }}
+      >
+        Next
+      </button>
+    </div>
+  );
 
   if (wallpapers) {
     content = (
@@ -44,6 +68,7 @@ const WallpaperList = (props) => {
               />
             </Link>
           ))}
+          {!props.mainpage ? pageButtons : null}
         </div>
       </React.Fragment>
     );

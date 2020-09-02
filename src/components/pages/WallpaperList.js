@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHttp } from "../../hooks/http";
 import {Link} from "react-router-dom";
 import loadingGif from '../../loading2.gif'
 
 
-const WallpaperList = () => {
-  const [wallpaperUrl, setWallpaperUrl] = useState(
-    "https://wallhaven.cc/api/v1/search?sorting=views&purity=100"
-  );
-  const [isLoading, fetchedData] = useHttp(wallpaperUrl, [wallpaperUrl]);
+const WallpaperList = (props) => {
+  const [wallpaperUrl, setWallpaperUrl] = useState(props.url);
+  const [limit] = useState(parseInt(props.limit));
+  const [wallpapers, setWallpapers] = useState([]);
+  const [isLoading, fetchedData] = useHttp(wallpaperUrl, [wallpaperUrl, limit]);
 
-  const wallpapers = fetchedData ? fetchedData.data.data : null;
+  useEffect(() => {
+    console.log("useeffect start");
+    console.log(isLoading);
+    if (fetchedData) {
+      setWallpapers(fetchedData.data.data);
+    }
+    console.log("useeffect end");
+  }, [fetchedData]);
 
   let content = <div className={"loading-container"}><img src={loadingGif} alt={"loading"}/></div>
 
@@ -19,13 +26,11 @@ const WallpaperList = () => {
     return "wallpaper/" + id;
   }
 
-  if (!isLoading && wallpapers) {
-    console.log(wallpapers);
+  if (wallpapers) {
     content = (
       <React.Fragment>
         <div>
-          {wallpapers.map((wallpaper) => (
-              <Link to={getLink(wallpaper.id)}>
+          {wallpapers.slice(0, limit).map((wallpaper) => (
             <img
               src={wallpaper.thumbs.small}
               alt="Wallpaper"
@@ -36,10 +41,9 @@ const WallpaperList = () => {
         </div>
       </React.Fragment>
     );
-  } else if (!isLoading && !wallpapers) {
+  } else if (fetchedData && !wallpapers) {
     content = <p>Could not fetch any data.</p>;
   }
-
   return content;
 };
 

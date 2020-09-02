@@ -28,8 +28,8 @@ const WallpaperList = (props) => {
   );
 
   let pageButtons = (
-    <div>
-      <button
+    <div className={"button-container"}>
+      <button className={"btn"}
         onClick={() => {
           if (fetchedData.data.meta.current_page > 1) {
             setPage(page - 1);
@@ -38,7 +38,7 @@ const WallpaperList = (props) => {
       >
         Previous
       </button>
-      <button
+      <button className={"btn"}
         onClick={() => {
           if (
             fetchedData.data.meta.current_page < fetchedData.data.meta.last_page
@@ -55,7 +55,7 @@ const WallpaperList = (props) => {
   if (wallpapers) {
     content = (
       <React.Fragment>
-        <div>
+        <div className={"wallpaper-container"}>
           {wallpapers.slice(0, limit).map((wallpaper) => (
             <Link
               to={"/wallpaper/" + wallpaper.id}

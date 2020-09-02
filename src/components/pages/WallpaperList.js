@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHttp } from "../../hooks/http";
+import {Link} from "react-router-dom";
 
 const WallpaperList = () => {
   const [wallpaperUrl, setWallpaperUrl] = useState(
@@ -13,17 +14,23 @@ const WallpaperList = () => {
   let content = <p>Loading...</p>;
 
 
+  const getLink = (id) => {
+    return "wallpaper/" + id;
+  }
+
   if (!isLoading && wallpapers) {
     console.log(wallpapers);
     content = (
       <React.Fragment>
         <div>
           {wallpapers.map((wallpaper) => (
+              <Link to={getLink(wallpaper.id)}>
             <img
               src={wallpaper.thumbs.small}
               alt="Wallpaper"
               key={wallpaper.thumbs.small}
             />
+              </Link>
           ))}
         </div>
       </React.Fragment>

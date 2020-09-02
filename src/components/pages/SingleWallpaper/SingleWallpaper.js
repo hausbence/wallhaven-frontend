@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useHttp } from "../../../hooks/http";
-// import res from "./resolution.png";
 import styled from "styled-components";
 import "./SingleWallpaper.css";
 import loadingGif from "../../../loading2.gif";
@@ -22,22 +21,22 @@ const SingleWallpaper = (props) => {
     </div>
   );
 
-  function selectionSetter() {
-    let value = document.getElementById("sources").value;
-    if (wallpaper && !isLoading) {
-      switch (value) {
-        case "large":
-          setImg(wallpaper.path);
-          break;
-        case "medium":
-          setImg(wallpaper.thumbs.large);
-          break;
-        case "small":
-          setImg(wallpaper.thumbs.small);
-          break;
-      }
+    function selectionSetter() {
+        let value = document.getElementById("sources").value;
+        if (wallpaper && !isLoading) {
+            switch (value) {
+                case "large":
+                    setImg(wallpaper.path)
+                    break;
+                case "medium":
+                    setImg(wallpaper.thumbs.large);
+                    break;
+                case "small":
+                    setImg(wallpaper.thumbs.small);
+                    break;
+            }
+        }
     }
-  }
 
   const SideBar = styled.div`
     border: 2px solid black;

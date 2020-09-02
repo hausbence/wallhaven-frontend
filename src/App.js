@@ -44,7 +44,7 @@ const App = () => {
             path="/latest"
             render={(props) => (
               <WallpaperList
-                url="https://wallhaven.cc/api/v1/search?categories=111&purity=001"
+                url="https://wallhaven.cc/api/v1/search?categories=100&purity=100"
                 limit="24"
               />
             )}

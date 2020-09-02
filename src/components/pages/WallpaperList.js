@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHttp } from "../../hooks/http";
 
 const WallpaperList = (props) => {
   const [wallpaperUrl, setWallpaperUrl] = useState(props.url);
-  const [limit] = useState(props.limit);
-
+  const [limit] = useState(parseInt(props.limit));
+  const [wallpapers, setWallpapers] = useState([]);
   const [isLoading, fetchedData] = useHttp(wallpaperUrl, [wallpaperUrl, limit]);
 
-  const wallpapers = fetchedData ? fetchedData.data.data : null;
+  useEffect(() => {
+    console.log("useeffect start");
+    console.log(isLoading);
+    if (fetchedData) {
+      setWallpapers(fetchedData.data.data);
+    }
+    console.log("useeffect end");
+  }, [fetchedData]);
 
   let content = <p>Loading...</p>;
 
-  if (!isLoading && wallpapers) {
-    console.log(wallpapers);
+  if (wallpapers) {
     content = (
       <React.Fragment>
         <div>
-          {wallpapers.slice(0, parseInt(props.limit)).map((wallpaper) => (
+          {wallpapers.slice(0, limit).map((wallpaper) => (
             <img
               src={wallpaper.thumbs.small}
               alt="Wallpaper"
@@ -26,10 +32,9 @@ const WallpaperList = (props) => {
         </div>
       </React.Fragment>
     );
-  } else if (!isLoading && !wallpapers) {
+  } else if (fetchedData && !wallpapers) {
     content = <p>Could not fetch any data.</p>;
   }
-
   return content;
 };
 

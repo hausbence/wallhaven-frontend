@@ -4,9 +4,8 @@ import {Link} from "react-router-dom";
 
 const WallpaperList = () => {
   const [wallpaperUrl, setWallpaperUrl] = useState(
-    "https://wallhaven.cc/api/v1/search?categories=100&purity=100"
+    "https://wallhaven.cc/api/v1/search?sorting=views&purity=100"
   );
-
   const [isLoading, fetchedData] = useHttp(wallpaperUrl, [wallpaperUrl]);
 
   const wallpapers = fetchedData ? fetchedData.data.data : null;

@@ -4,7 +4,8 @@ import {Link, BrowserRouter as Router, Route} from "react-router-dom";
 import loadingGif from "../../../loading2.gif";
 import WallpaperList from "../WallpaperList";
 import TagPage from "../TagPage/TagPage";
-import './mainPage.css'
+import './mainPage.css';
+import '../../layout/Dropdown.css';
 
 
 
@@ -23,16 +24,14 @@ const MainPage = () => {
     const handleChange = () => {
         let resolutionValue = document.getElementById("dropdown").value;
         setValue(resolutionValue);
-
     }
 
     let mainContent = (
         <div>
             <div>
-                <div className="Dropdown">
+                <div className="box">
                     <form onSubmit={handleSubmit}>
                         <label>
-                            Select resolution:
                             <select id="dropdown" value={value} onChange={handleChange}>
                                 <option value="1920x1080">1920x1080</option>
                                 <option value="1680x1050">1680x1050</option>

@@ -1,52 +1,26 @@
-.dropdown {
-    position: relative;
-    display: inline-block;
-    margin-inline-start: 23%;
+.box {
+    margin-inline-start: 43%;
+    width:auto;
 }
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    top:45px;
-    right:0px;
-    width: 200px;
-    background-color: white;
-    font-weight:bold;
-    position: absolute;
 
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+.box select {
+    background-color: #aaaaaa;
+    color: black;
+    padding: 12px;
+    width: 250px;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    outline: none;
 }
-li a {
-    color: #000;
-    text-decoration: none;
+
+
+.box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
 }
-li {
-    padding: 8px 16px;
-    border-bottom: 1px solid #e5e5e5;
-}
-li:last-child {
-    border-bottom: none;
-}
-li:hover {
-    background-color: #e5e5e5;
-    color: white;
-}
-.button{
-    width:178px;
-    background-color:#aaaaaa ;
-    padding:12px;
-    border-radius:5px;
-    font-weight:bold;
-    color:white;
-}
-.button:before{
-    content:"";
-    position:absolute;
-    width:0px;
-    height:0px;
-    border: 10px solid;
-    border-color: white transparent transparent transparent;
-    right:6px;
-    top:18px;
+
+.box select option {
+    padding: 30px;
 }

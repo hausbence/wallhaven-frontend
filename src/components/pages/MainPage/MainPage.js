@@ -1,15 +1,13 @@
-import React, {useState, useEffect} from "react";
-import {useHttp} from "../../../hooks/http";
-import {Link, BrowserRouter as Router, Route} from "react-router-dom";
-import loadingGif from "../../../loading2.gif";
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import WallpaperList from "../WallpaperList";
-import TagPage from "../TagPage/TagPage";
-import './mainPage.css'
-
+import './mainPage.css';
+import '../../layout/Dropdown.css';
 
 const MainPage = () => {
+    const [url, setUrl] = useState('https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc');
 
-    let mainContent = (
+    return (
         <div>
             <div className={"tag-container"}>
                 <Link to={"/tag/537"}><p>#League of Legends</p></Link>
@@ -24,7 +22,7 @@ const MainPage = () => {
             </div>
             <div>
                 <WallpaperList
-                    url="https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc"
+                    url={url}
                     limit="12"
                     mainpage="true"/>
             </div>
@@ -41,16 +39,13 @@ const MainPage = () => {
             </div>
             <div>
                 <WallpaperList
-                    url="https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc"
+                    url={url}
                     limit="12"
                     mainpage="true"/>
             </div>
         </div>
 
-    )
-
-
-    return mainContent;
+    );
 }
 
 export default MainPage;

@@ -11,17 +11,17 @@
 }
 
 .img {
-    position: absolute;
-    height: 80%;
+    height: auto;
     width: 80%;
     top: 10%;
     right: 0;
-    bottom: 0;
-    display: block;
+    bottom: -91px;
+    display: -webkit-box;
     margin: auto;
     max-width: 95%;
     max-height: 95%;
-    border: 5px solid #555;
+    border: 5px solid #333;
+    margin-block-start: 4%;
 }
 
 .sb-img {
@@ -54,4 +54,11 @@
     margin-inline-start: 20px;
     text-align: left;
     font-size: small;
+}
+
+.main-container {
+    display: flex;
+    margin-block-start: 2%;
+    border: 10px solid #333;
+    border-radius: 7px;
 }

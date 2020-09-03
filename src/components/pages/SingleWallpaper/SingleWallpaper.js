@@ -5,7 +5,7 @@ import "./SingleWallpaper.css";
 import loadingGif from "../../../loading2.gif";
 
 const SingleWallpaper = (props) => {
-  const [current, setCurrent] = useState(props);
+  const [current] = useState(props);
   const [img, setImg] = useState(null);
 
   const wallpaperUrl = `https://wallhaven.cc/api/v1/w/${[
@@ -21,29 +21,32 @@ const SingleWallpaper = (props) => {
     </div>
   );
 
-    function selectionSetter() {
-        let value = document.getElementById("sources").value;
-        if (wallpaper && !isLoading) {
-            switch (value) {
-                case "large":
-                    setImg(wallpaper.path)
-                    break;
-                case "medium":
-                    setImg(wallpaper.thumbs.large);
-                    break;
-                case "small":
-                    setImg(wallpaper.thumbs.small);
-                    break;
-            }
-        }
+  function selectionSetter() {
+    let value = document.getElementById("sources").value;
+    if (wallpaper && !isLoading) {
+      switch (value) {
+        case "large":
+          setImg(wallpaper.path);
+          break;
+        case "medium":
+          setImg(wallpaper.thumbs.large);
+          break;
+        case "small":
+          setImg(wallpaper.thumbs.small);
+          break;
+        default:
+          setImg(wallpaper.thumbs.small);
+          break;
+      }
     }
+  }
 
   const SideBar = styled.div`
-    border: 2px solid black;
+    border: 2px solid #333;
     border-radius 5px;
     height: 93.5%;
-    width: 14%;
-    position: fixed;
+    width: 15%;
+    min-width: 180px;
     z-index: 1;
     bottom: 0;
     left: 0;
@@ -69,6 +72,13 @@ const SingleWallpaper = (props) => {
       color: color,
     };
   };
+
+  const getBackground = (img) => {
+      return {
+          backgroundImage: "url(" + img + ")"
+
+  }
+  }
   const TagContainer = styled.div`
     display: flex-box;
   `;
@@ -102,13 +112,10 @@ const SingleWallpaper = (props) => {
 
     console.log(wallpaper);
     content = (
-      <div>
+      <div className={"main-container"}>
         <SideBar>
           <IconContainer>
             <p className={"res"}>{wallpaper.resolution}</p>
-            <a className="link" href="#">
-              Search for similar...
-            </a>
             <a
               className="link"
               href="https://www.artstation.com/artwork/8lvmER"
@@ -161,8 +168,8 @@ const SingleWallpaper = (props) => {
             </button>
           </DropDown>
         </SideBar>
-        <div>
-          <img className={"img"} src={img} alt={"wallpaper"} />
+        <div className="img-container" >
+            <img className={"img"} src={img}  alt={""}/>
         </div>
       </div>
     );

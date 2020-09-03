@@ -13,6 +13,7 @@ export const useHttp = (url, dependencies) => {
       setIsLoading(false);
       setFetchedData(res);
     });
+    // eslint-disable-next-line
   }, dependencies);
 
   return [isLoading, fetchedData];

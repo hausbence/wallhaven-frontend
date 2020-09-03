@@ -4,17 +4,20 @@ import { Link } from "react-router-dom";
 import loadingGif from "../../loading2.gif";
 
 const WallpaperList = (props) => {
-  const [wallpaperUrl] = useState(props.url);
+  const [wallpaperUrl, setWallpaperUrl] = useState(props.url);
   const [limit] = useState(parseInt(props.limit));
   const [page, setPage] = useState(parseInt(props.page));
   const [wallpapers, setWallpapers] = useState([]);
   const [isLoading, fetchedData] = useHttp(
     wallpaperUrl + "&page=" + page.toString(),
-    [(wallpaperUrl, limit, page)]
+    [wallpaperUrl, limit, page]
   );
 
   console.log(isLoading);
-  // console.log(props.props.location.inputValue);
+
+  if (wallpaperUrl !== props.url) {
+    setWallpaperUrl(props.url);
+  }
 
   useEffect(() => {
     if (fetchedData) {

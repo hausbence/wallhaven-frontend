@@ -1,7 +1,6 @@
 import React from "react";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
-import WallpaperList from "../pages/WallpaperList";
 
 const Navbar = () => {
   let history = useHistory();
@@ -9,8 +8,7 @@ const Navbar = () => {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       history.push({
-        pathname: "/search",
-        inputValue: document.getElementById("input").value,
+        pathname: `/search/${document.getElementById("input").value}`,
       });
     }
   };

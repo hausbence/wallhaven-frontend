@@ -4,6 +4,7 @@ import "./App.css";
 import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
 import WallpaperList from "./components/pages/WallpaperList";
+import Search from "./components/pages/Search";
 import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper";
 // import LatestWallpaperList from "./components/pages/LatestWallpaperList";
 
@@ -55,17 +56,7 @@ const App = () => {
               />
             )}
           />
-          <Route
-            path="/search"
-            render={(props) => (
-              <WallpaperList
-                url="https://wallhaven.cc/api/v1/search?categories=100&purity=100"
-                limit="24"
-                page="1"
-                props={props}
-              />
-            )}
-          />
+          <Route exact path="/search/:searchTerm" component={Search} />
           <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
         </div>
       </Router>

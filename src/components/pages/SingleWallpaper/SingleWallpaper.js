@@ -3,6 +3,7 @@ import { useHttp } from "../../../hooks/http";
 import styled from "styled-components";
 import "./SingleWallpaper.css";
 import loadingGif from "../../../loading2.gif";
+import {Link} from "react-router-dom";
 
 const SingleWallpaper = (props) => {
   const [current] = useState(props);
@@ -43,9 +44,8 @@ const SingleWallpaper = (props) => {
 
   const SideBar = styled.div`
     border: 2px solid #333;
-    border-radius 5px;
-    height: 93.5%;
-    width: 15%;
+    height: auto;
+    width: auto;
     min-width: 180px;
     z-index: 1;
     bottom: 0;
@@ -90,6 +90,7 @@ const SingleWallpaper = (props) => {
     margin-block-start: 8px;
     margin-inline-start: 30px;
     border-radius: 5px;
+    color: white;
   `;
 
   const ColorList = styled.ul`
@@ -131,7 +132,7 @@ const SingleWallpaper = (props) => {
               <p className={"tag-title"}>Tags: </p>
               <TagContainer>
                 {wallpaper.tags.map((tag) => (
-                  <Tag>{tag.name}</Tag>
+                  <Link to={"/tag/" + tag.id}><Tag>{tag.name}</Tag></Link>
                 ))}
               </TagContainer>
             </React.Fragment>

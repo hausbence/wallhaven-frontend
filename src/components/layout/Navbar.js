@@ -7,7 +7,9 @@ const Navbar = () => {
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      history.push("/search/");
+      history.push({
+        pathname: `/search/${document.getElementById("input").value}`,
+      });
     }
   };
 
@@ -20,6 +22,7 @@ const Navbar = () => {
       <input
         type="text"
         className="input"
+        id="input"
         placeholder="Search..."
         onKeyPress={handleKeyPress}
       />

@@ -1,0 +1,10 @@
+.tag-container {
+    display: -webkit-flex;
+    justify-content: space-evenly;
+    margin: 3%;
+}
+
+.tag-container p {
+    font-size: calc(1vw + 0vh + 1vmin);
+
+}

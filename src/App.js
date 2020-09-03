@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
@@ -7,25 +7,20 @@ import WallpaperList from "./components/pages/WallpaperList";
 import Search from "./components/pages/Search";
 import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper";
 import TagPage from "./components/pages/TagPage/TagPage";
+import MainPage from './components/pages/MainPage/MainPage'
 
 const App = () => {
   return (
     <React.Fragment>
       <Router>
+        <Switch>
         <div className="App">
           <Header />
           <Navbar />
           <Route
             exact
             path="/"
-            render={(props) => (
-              <WallpaperList
-                url="https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc"
-                limit="18"
-                mainpage="true"
-              />
-            )}
-          />
+          component={MainPage}/>
           <Route
             path="/random"
             render={(props) => (
@@ -60,6 +55,7 @@ const App = () => {
           <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
           <Route exact path="/tag/:id" component={TagPage} />
         </div>
+        </Switch>
       </Router>
     </React.Fragment>
   );

@@ -44,9 +44,8 @@ const SingleWallpaper = (props) => {
 
   const SideBar = styled.div`
     border: 2px solid #333;
-    border-radius 5px;
-    height: 93.5%;
-    width: 15%;
+    height: auto;
+    width: auto;
     min-width: 180px;
     z-index: 1;
     bottom: 0;

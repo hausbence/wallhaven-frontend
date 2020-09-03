@@ -6,6 +6,7 @@ import Navbar from "./components/layout/Navbar";
 import WallpaperList from "./components/pages/WallpaperList";
 import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper";
 import LatestWallpaperList from "./components/pages/LatestWallpaperList";
+import Settingbar from "./components/layout/Settingbar";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <div className="App">
           <Header />
           <Navbar />
+          <Settingbar />
           <Route
             exact
             path="/"

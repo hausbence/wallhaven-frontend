@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
+import './components/layout/DropdownStyles/global.css';
 import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
 import WallpaperList from "./components/pages/WallpaperList";
 import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper";
-import LatestWallpaperList from "./components/pages/LatestWallpaperList";
-import Settingbar from "./components/layout/Settingbar";
+//import LatestWallpaperList from "./components/pages/LatestWallpaperList";
+//import Settingbar from "./components/layout/Settingbar";
+import ParentDropdown from "./components/layout/ParentDropdown";
 // import LatestWallpaperList from "./components/pages/LatestWallpaperList";
 
 const App = () => {
@@ -16,7 +18,7 @@ const App = () => {
         <div className="App">
           <Header />
           <Navbar />
-          <Settingbar />
+          <ParentDropdown />
           <Route
             exact
             path="/"

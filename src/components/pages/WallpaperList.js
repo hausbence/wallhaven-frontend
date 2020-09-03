@@ -41,7 +41,7 @@ const WallpaperList = (props) => {
                             <option value="1920x1080">1920x1080</option>
                             <option value="1680x1050">1680x1050</option>
                             <option value="1280x720">1280x720</option>
-                            <option value="">remove filters</option>
+                            <option value="">Remove filters</option>
                         </select>
                     </label>
                     <input className={"btn"} type="submit" value="Submit"/>

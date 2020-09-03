@@ -7,10 +7,42 @@ import TagPage from "../TagPage/TagPage";
 import './mainPage.css'
 
 
+
 const MainPage = () => {
+
+    const [value, setValue] = useState('something');
+    const [url, setUrl] = useState('https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc');
+
+    const handleSubmit = (event) => {
+        let result = "&resolutions=" + value;
+        setUrl('https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc' + result);
+        console.log(url);
+        event.preventDefault();
+    }
+
+    const handleChange = () => {
+        let resolutionValue = document.getElementById("dropdown").value;
+        setValue(resolutionValue);
+
+    }
 
     let mainContent = (
         <div>
+            <div>
+                <div className="Dropdown">
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            Select resolution:
+                            <select id="dropdown" value={value} onChange={handleChange}>
+                                <option value="1920x1080">1920x1080</option>
+                                <option value="1680x1050">1680x1050</option>
+                                <option value="1280x720">1280x720</option>
+                            </select>
+                        </label>
+                        <input type="submit" value="Submit" />
+                    </form>
+                </div>
+            </div>
             <div className={"tag-container"}>
                 <Link to={"/tag/537"}><p>#League of Legends</p></Link>
                 <Link to={"/tag/65348"}><p>#4K</p></Link>
@@ -24,7 +56,7 @@ const MainPage = () => {
             </div>
             <div>
                 <WallpaperList
-                    url="https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc"
+                    url={url}
                     limit="12"
                     mainpage="true"/>
             </div>
@@ -41,7 +73,7 @@ const MainPage = () => {
             </div>
             <div>
                 <WallpaperList
-                    url="https://wallhaven.cc/api/v1/search?categories=100&purity=100&sorting=random&order=desc"
+                    url={url}
                     limit="12"
                     mainpage="true"/>
             </div>

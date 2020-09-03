@@ -5,7 +5,7 @@ import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
 import WallpaperList from "./components/pages/WallpaperList";
 import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper";
-// import LatestWallpaperList from "./components/pages/LatestWallpaperList";
+import TagPage from "./components/pages/TagPage/TagPage";
 
 const App = () => {
   return (
@@ -56,6 +56,7 @@ const App = () => {
             )}
           />
           <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
+          <Route exact path="/tag/:id" component={TagPage} />
         </div>
       </Router>
     </React.Fragment>

@@ -4,6 +4,7 @@ import "./App.css";
 import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
 import WallpaperList from "./components/pages/WallpaperList";
+import Search from "./components/pages/Search";
 import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper";
 import TagPage from "./components/pages/TagPage/TagPage";
 
@@ -55,6 +56,7 @@ const App = () => {
               />
             )}
           />
+          <Route exact path="/search/:searchTerm" component={Search} />
           <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
           <Route exact path="/tag/:id" component={TagPage} />
         </div>

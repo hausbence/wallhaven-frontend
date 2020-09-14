@@ -1,0 +1,25 @@
+.wallpaper-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 7%;
+}
+
+.wallpaper-block img {
+  display: block;
+}
+
+.wallpaper-block {
+  flex-basis: 0;
+  border: 2px solid #bbb;
+  margin: 10px;
+}
+
+.wallpaper-block:hover {
+  border: 2px solid greenyellow;
+  margin: 10px;
+}
+
+.button-container {
+  width: 100%;
+}

@@ -1,0 +1,69 @@
+import React from "react";
+import Axios from "axios";
+import { useForm } from "react-hook-form";
+import * as base64 from "punycode";
+
+const Registration = () => {
+  const { handleSubmit, register, errors } = useForm();
+  const onSubmit = (values) => {
+      Axios.post('http://localhost:8080/register', {
+          name: values.username,
+          password : values.password,
+          email: values.email
+      })
+          .then((response) => {
+              console.log(response);
+          }, (error) => {
+              console.log(error);
+          });
+      console.log(values)};
+
+
+
+  //   pattern: {
+  //     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+  //     message: "invalid email address",
+
+  // validate: (value) => value !== "admin" || "Nice try!",
+  //   }
+
+  let content = (
+    <React.Fragment>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          name="email"
+          type="email"
+          ref={register({
+            required: true,
+          })}
+        />
+        {errors.email && errors.email.message}
+
+        <input
+          name="username"
+          ref={register({
+            required: true,
+            minLength: 2,
+            maxLength: 16,
+          })}
+        />
+        {errors.username && errors.username.message}
+        <input
+          name="password"
+          type="password"
+          ref={register({
+            required: true,
+            minLength: 2,
+            maxLength: 16,
+          })}
+        />
+        {errors.password && errors.password.message}
+
+        <button type="submit" >Submit</button>
+      </form>
+    </React.Fragment>
+  );
+  return content;
+};
+
+export default Registration;

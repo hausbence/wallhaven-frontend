@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import WallpaperList from "../WallpaperList";
+import WallpaperList from "../WallpaperList/WallpaperList";
 import "./mainPage.css";
 import "../../layout/Dropdown.css";
 

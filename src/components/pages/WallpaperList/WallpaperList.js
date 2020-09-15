@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useHttp } from "../../hooks/http";
+import { useHttp } from "../../../hooks/http";
 import { Link } from "react-router-dom";
-import loadingGif from "../../loading2.gif";
+import loadingGif from "../../../loading2.gif";
 import "./WallpaperList.css";
 
 const WallpaperList = (props) => {

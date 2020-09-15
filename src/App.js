@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Header from "./components/layout/Header";
 import Navbar from "./components/layout/Navbar";
-import WallpaperList from "./components/pages/WallpaperList";
+import WallpaperList from "./components/pages/WallpaperList/WallpaperList";
 import Search from "./components/pages/Search";
 import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper";
 import TagPage from "./components/pages/TagPage/TagPage";
 import MainPage from "./components/pages/MainPage/MainPage";
+import Registration from "./components/pages/Registration";
 
 const App = () => {
   return (
@@ -52,6 +53,7 @@ const App = () => {
               <Route exact path="/search/:searchTerm" component={Search} />
               <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
               <Route exact path="/tag/:id" component={TagPage} />
+              <Route exact path="/registration" component={Registration} />
             </div>
           </React.Fragment>
         </Switch>

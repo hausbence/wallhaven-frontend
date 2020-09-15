@@ -3,7 +3,7 @@ import { useHttp } from "../../../hooks/http";
 import styled from "styled-components";
 import "./SingleWallpaper.css";
 import loadingGif from "../../../loading2.gif";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SingleWallpaper = (props) => {
   const [current] = useState(props);
@@ -54,7 +54,7 @@ const SingleWallpaper = (props) => {
     overflow-x: hidden;
     padding-top: 20px;
     color: white;
-    `;
+  `;
 
   const DropDown = styled.div`
     text-align: center;
@@ -73,12 +73,12 @@ const SingleWallpaper = (props) => {
     };
   };
 
-  const getBackground = (img) => {
-      return {
-          backgroundImage: "url(" + img + ")"
+  // const getBackground = (img) => {
+  //     return {
+  //         backgroundImage: "url(" + img + ")"
 
-  }
-  }
+  // }
+  // }
   const TagContainer = styled.div`
     display: flex-box;
   `;
@@ -132,7 +132,9 @@ const SingleWallpaper = (props) => {
               <p className={"tag-title"}>Tags: </p>
               <TagContainer>
                 {wallpaper.tags.map((tag) => (
-                  <Link to={"/tag/" + tag.id}><Tag>{tag.name}</Tag></Link>
+                  <Link to={"/tag/" + tag.id}>
+                    <Tag>{tag.name}</Tag>
+                  </Link>
                 ))}
               </TagContainer>
             </React.Fragment>
@@ -169,8 +171,8 @@ const SingleWallpaper = (props) => {
             </button>
           </DropDown>
         </SideBar>
-        <div className="img-container" >
-            <img className={"img"} src={img}  alt={""}/>
+        <div className="img-container">
+          <img className={"img"} src={img} alt={""} />
         </div>
       </div>
     );

@@ -15,7 +15,6 @@ const WallpaperList = (props) => {
     [wallpaperUrl, limit, page]
   );
 
-  console.log(isLoading);
   useEffect(() => {
     if (fetchedData) {
       setWallpapers(fetchedData.data.data);
@@ -31,6 +30,12 @@ const WallpaperList = (props) => {
   const handleChange = () => {
     let resolutionValue = document.getElementById("dropdown").value;
     setValue(resolutionValue);
+  };
+
+  const logIsLoading = () => {
+    if (isLoading) {
+      console.log("Loading");
+    }
   };
 
   let dropDown = (
@@ -90,7 +95,7 @@ const WallpaperList = (props) => {
         {!props.mainpage ? dropDown : null}
         <div className={"wallpaper-container"}>
           {wallpapers.slice(0, limit).map((wallpaper) => (
-            <div className={"wallpaper-block"}>
+            <div className={"wallpaper-block"} key={wallpaper.thumbs.small}>
               <Link
                 to={"/wallpaper/" + wallpaper.id}
                 key={wallpaper.thumbs.small}
@@ -108,6 +113,7 @@ const WallpaperList = (props) => {
       </React.Fragment>
     );
   } else if (fetchedData && !wallpapers) {
+    logIsLoading();
     content = <p>Could not fetch any data.</p>;
   }
 

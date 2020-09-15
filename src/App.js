@@ -9,6 +9,7 @@ import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper"
 import TagPage from "./components/pages/TagPage/TagPage";
 import MainPage from "./components/pages/MainPage/MainPage";
 import Registration from "./components/pages/Registration";
+import Login from "./components/pages/WallpaperList/Login";
 
 const App = () => {
   return (
@@ -54,6 +55,7 @@ const App = () => {
               <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
               <Route exact path="/tag/:id" component={TagPage} />
               <Route exact path="/registration" component={Registration} />
+              <Route exact path="/login" component={Login} />
             </div>
           </React.Fragment>
         </Switch>

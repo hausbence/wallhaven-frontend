@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHttp } from "../../../hooks/http";
-import WallpaperList from "../WallpaperList";
+import WallpaperList from "../WallpaperList/WallpaperList";
 
 const TagPage = (props) => {
   let { id } = useParams();

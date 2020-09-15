@@ -5,44 +5,44 @@ const Registration = () => {
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = (values) => console.log(values);
 
-  //   pattern: {
-  //     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-  //     message: "invalid email address",
-
-  // validate: (value) => value !== "admin" || "Nice try!",
-  //   }
-
   let content = (
     <React.Fragment>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <label>E-mail</label>
         <input
           name="email"
           type="email"
+          placeholder="example@example.com"
           ref={register({
             required: true,
           })}
         />
-        {errors.email && errors.email.message}
+        {errors.email && "Invalid e-mail"}
 
+        <label>Username</label>
         <input
           name="username"
+          placeholder="username"
           ref={register({
             required: true,
             minLength: 2,
             maxLength: 16,
           })}
         />
-        {errors.username && errors.username.message}
+        {errors.username && "Invalid username"}
+
+        <label>Password</label>
         <input
           name="password"
           type="password"
+          placeholder="password"
           ref={register({
             required: true,
             minLength: 2,
             maxLength: 16,
           })}
         />
-        {errors.password && errors.password.message}
+        {errors.password && "Invalid password"}
 
         <button type="submit">Submit</button>
       </form>

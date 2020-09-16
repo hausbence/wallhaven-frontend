@@ -29,8 +29,8 @@ const Login = () => {
       align-content: center;
       justify-content: center;
       flex-flow: column;
-      width: 200px;
-      height: 200px;
+      width: 350px;
+      height: 350px;
       padding: 50px;
       margin: 0 auto;
       border: 1px solid lightgray;
@@ -47,7 +47,8 @@ const Login = () => {
         color: #fff;
         transform: translateX(23%);
         padding: 10px;
-        margin: 5px;
+        margin-top: 24px;
+        margin-left: 50px;
         width: 100px;
         border: none;
         border-radius: 10px;
@@ -62,7 +63,8 @@ const Login = () => {
     const StyledInput = styled.input`
       border: 1px solid #000;
       padding: 10px;
-      margin: 5px;
+      margin-left: 50px;
+      margin-top: 15px;
       width: 150px;
       box-sizing: border-box;
     `;

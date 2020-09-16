@@ -10,6 +10,7 @@ import TagPage from "./components/pages/TagPage/TagPage";
 import MainPage from "./components/pages/MainPage/MainPage";
 import Registration from "./components/pages/Registration";
 import Login from "./components/pages/WallpaperList/Login";
+import { CookiesProvider } from "react-cookie";
 
 const App = () => {
   return (
@@ -55,7 +56,9 @@ const App = () => {
               <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
               <Route exact path="/tag/:id" component={TagPage} />
               <Route exact path="/registration" component={Registration} />
-              <Route exact path="/login" component={Login} />
+              <CookiesProvider>
+                  <Route exact path="/login" component={Login} />
+              </CookiesProvider>
             </div>
           </React.Fragment>
         </Switch>

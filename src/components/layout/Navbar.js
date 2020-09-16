@@ -1,17 +1,24 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./Navbar.css";
+import {useCookies} from "react-cookie";
 
 const Navbar = () => {
   let history = useHistory();
+  const [cookies, removeCookie] = useCookies(["email", "password"]);
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      history.push({
-        pathname: `/search/${document.getElementById("input").value}`,
-      });
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            history.push({
+                pathname: `/search/${document.getElementById("input").value}`,
+            });
+        }
+    };
+
+    const handleLogout = () => {
+        removeCookie("email", "");
+        removeCookie("password", "");
     }
-  };
 
   return (
     <div className="navbar">
@@ -21,7 +28,8 @@ const Navbar = () => {
       <Link to="/latest">Latest</Link>
       <Link to="/registration">Registration</Link>
       <Link to="/login">Login</Link>
-      <input
+      <Link to="/" onClick={handleLogout}>Logout</Link>
+        <input
         type="text"
         className="input"
         id="input"

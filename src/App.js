@@ -15,6 +15,7 @@ import Login from "./components/pages/WallpaperList/Login";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./components/layout/Theme";
 import { GlobalStyles } from "./components/layout/GlobalStyles";
+import Users from "./components/pages/UserPage/Users";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
@@ -75,6 +76,7 @@ const App = () => {
               <Route exact path="/tag/:id" component={TagPage} />
               <Route exact path="/registration" component={Registration} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/users" component={Users} />
             </div>
           </React.Fragment>
         </ThemeProvider>

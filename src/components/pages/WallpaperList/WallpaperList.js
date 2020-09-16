@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHttp } from "../../../hooks/http";
 import { Link } from "react-router-dom";
-import loadingGif from "../../../loading2.gif";
+import loadingGif from "../../../resources/loading2.gif";
 import "./WallpaperList.css";
+import "./Dropdown.css";
 
 const WallpaperList = (props) => {
   const [wallpaperUrl, setWallpaperUrl] = useState(props.url);

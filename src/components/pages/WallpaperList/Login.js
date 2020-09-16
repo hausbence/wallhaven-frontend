@@ -21,12 +21,12 @@ const Login = () => {
             console.log(values.email)
             setCookie("email", values.email, {path: "/"});
             setCookie("password", values.password, {path: "/"});
+            history.push("/")
+            console.log(cookies.email);
+            console.log(id)
         }
     };
-    if (login) {
-        console.log(cookies.email);
-        console.log(id)
-    }
+
     useEffect(() => {
         Axios.get(`http://localhost:8080/id/${cookies.email}`).then((r => {
             setId(r.data)

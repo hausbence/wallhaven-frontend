@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import { useCookies } from "react-cookie";
-import styled from "styled-components";
 import './Login.css';
+import { useHistory } from "react-router-dom";
+
 
 const Login = () => {
   const { handleSubmit, register, errors } = useForm();
+  const history = useHistory();
   const [login, setLogin] = useState(false);
   const [cookies, setCookie] = useCookies(["email", "password"]);
   const onSubmit = (values) => {
@@ -17,6 +19,7 @@ const Login = () => {
     if (login) {
       setCookie("email", values.email, { path: "/" });
       setCookie("password", values.password, { path: "/" });
+      history.push("/")
     }
   };
   if (login) {

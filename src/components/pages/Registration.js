@@ -1,12 +1,14 @@
 import React from "react";
 import Axios from "axios";
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const Registration = () => {
+  const history = useHistory();
   const { handleSubmit, register, errors } = useForm();
+
   const onSubmit = (values) => {
-    Axios.post("http://localhost:8080/register", {
+      Axios.post("http://localhost:8080/register", {
       name: values.username,
       password: values.password,
       email: values.email,
@@ -16,9 +18,10 @@ const Registration = () => {
       },
       (error) => {
         console.log(error);
-      }
-    );
-    console.log(values);
+      },
+      history.push("/login")
+  );
+      console.log(values);
   };
 
   //   pattern: {
@@ -66,8 +69,8 @@ const Registration = () => {
             {errors.password && errors.password.message}
 
             <button type="submit" className="button">Submit</button>
-      </form>
-    </div>
+          </form>
+        </div>
     </React.Fragment>
   );
   return content;

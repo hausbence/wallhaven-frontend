@@ -1,6 +1,7 @@
 import React from "react";
 import Axios from "axios";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 
 const Registration = () => {
   const { handleSubmit, register, errors } = useForm();
@@ -27,40 +28,90 @@ const Registration = () => {
   // validate: (value) => value !== "admin" || "Nice try!",
   //   }
 
+    const StyledRegistration = styled.div`
+      display: flex;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      flex-flow: column;
+      width: 200px;
+      height: 200px;
+      padding: 50px;
+      margin: 0 auto;
+      border: 1px solid lightgray;
+      background: #88888;
+      
+    
+      h2 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+      }
+
+      button {
+        background: #aaaaaa;
+        color: #fff;
+        transform: translateX(23%);
+        padding: 10px;
+        margin: 5px;
+        width: 100px;
+        border: none;
+        border-radius: 10px;
+        box-sizing: border-box;
+      }
+      
+      button:hover {
+        background-color: #888888;
+      }
+  `;
+
+    const StyledInput = styled.input`
+      border: 1px solid #000;
+      padding: 10px;
+      margin: 5px;
+      width: 150px;
+      box-sizing: border-box;
+    `;
+
   let content = (
     <React.Fragment>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          name="email"
-          type="email"
-          ref={register({
-            required: true,
-          })}
-        />
-        {errors.email && errors.email.message}
+        <h2 className="loginHeader">Registration</h2>
+        <StyledRegistration>
+          <form onSubmit={handleSubmit(onSubmit)}>
+              <StyledInput
+              name="email"
+              type="email"
+              placeholder="Email"
+              ref={register({
+                required: true,
+              })}
+            />
+            {errors.email && errors.email.message}
 
-        <input
-          name="username"
-          ref={register({
-            required: true,
-            minLength: 2,
-            maxLength: 16,
-          })}
-        />
-        {errors.username && errors.username.message}
-        <input
-          name="password"
-          type="password"
-          ref={register({
-            required: true,
-            minLength: 2,
-            maxLength: 16,
-          })}
-        />
-        {errors.password && errors.password.message}
+            <StyledInput
+              name="username"
+              placeholder="Username"
+              ref={register({
+                required: true,
+                minLength: 2,
+                maxLength: 16,
+              })}
+            />
+            {errors.username && errors.username.message}
+            <StyledInput
+              name="password"
+              type="password"
+              placeholder="Password"
+              ref={register({
+                required: true,
+                minLength: 2,
+                maxLength: 16,
+              })}
+            />
+            {errors.password && errors.password.message}
 
-        <button type="submit">Submit</button>
+            <button type="submit">Submit</button>
       </form>
+    </StyledRegistration>
     </React.Fragment>
   );
   return content;

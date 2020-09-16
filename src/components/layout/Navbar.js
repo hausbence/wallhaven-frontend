@@ -28,8 +28,9 @@ const Navbar = () => {
       <Link to="/latest">Latest</Link>
       <Link to="/registration">Registration</Link>
       <Link to="/login">Login</Link>
-      <Link to="/" onClick={handleLogout}>Logout</Link>
-        <input
+      <Link to="/login">Profile</Link>
+      <Link to="/" onClick={handleLogout}>Logout</Link>     
+      <input
         type="text"
         className="input"
         id="input"

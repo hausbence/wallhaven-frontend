@@ -14,22 +14,13 @@ const Login = () => {
         )
         console.log(values);
         if (login) {
-            setCookie("email", values.email )
-            setCookie("password", values.password)
+            setCookie("email", values.email, {path : "/"} )
+            setCookie("password", values.password, {path : "/"})
         }
-    }
-
-    let logged = "";
-    if (login) {
-        logged = "logged in";
-    }
-    else {
-        logged = "not logged in"
     }
 
     return (
         <React.Fragment>
-            <h1>{logged}</h1>
             <h2>{cookies.email}</h2>
             <h2>{cookies.password}</h2>
             <form onSubmit={handleSubmit(onSubmit)}>

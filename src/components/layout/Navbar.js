@@ -19,6 +19,8 @@ const Navbar = () => {
       <Link to="/random">Random</Link>
       <Link to="/toplist">Toplist</Link>
       <Link to="/latest">Latest</Link>
+      <Link to="/registration">Registration</Link>
+      <Link to="/login">Login</Link>
       <input
         type="text"
         className="input"

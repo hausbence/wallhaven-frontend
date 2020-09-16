@@ -21,6 +21,7 @@ const Navbar = () => {
       <Link to="/latest">Latest</Link>
       <Link to="/registration">Registration</Link>
       <Link to="/login">Login</Link>
+      <Link to="/login">Profile</Link>
       <input
         type="text"
         className="input"

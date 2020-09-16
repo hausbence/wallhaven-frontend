@@ -18,6 +18,9 @@ const Login = () => {
             setCookie("password", values.password, {path : "/"})
         }
     }
+    if (login) {
+        console.log(cookies);
+    }
 
     return (
         <React.Fragment>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHttp } from "../../../hooks/http";
 import WallpaperList from "../WallpaperList/WallpaperList";
+import {useCookies} from "react-cookie";
 
 const TagPage = (props) => {
   let { id } = useParams();
@@ -14,6 +15,9 @@ const TagPage = (props) => {
     `https://wallhaven.cc/api/v1/tag/${id}`,
     []
   );
+  const [cookies, setCookie] = useCookies(["email", "password"]);
+  console.log(cookies)
+
   const [tagData, setTagData] = useState([]);
 
   if (isLoading) {

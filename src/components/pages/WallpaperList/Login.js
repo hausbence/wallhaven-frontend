@@ -1,27 +1,37 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React, {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
 import Axios from "axios";
-import { useCookies } from "react-cookie";
+import {useCookies} from "react-cookie";
 import styled from "styled-components";
 import './Login.css';
 
 const Login = () => {
-  const { handleSubmit, register, errors } = useForm();
-  const [login, setLogin] = useState(false);
-  const [cookies, setCookie] = useCookies(["email", "password"]);
-  const onSubmit = (values) => {
-    Axios.get(
-      `http://localhost:8080/login/${values.email}/${values.password}`
-    ).then((r) => setLogin(r.data));
-    console.log(values);
+    const [id, setId] = useState(0)
+    const {handleSubmit, register, errors} = useForm();
+    const [login, setLogin] = useState(false);
+    const [cookies, setCookie] = useCookies(["id","email", "password"]);
+    const onSubmit = (values) => {
+        Axios.get(
+            `http://localhost:8080/login/${values.email}/${values.password}`
+        ).then((r) => setLogin(r.data));
+        console.log(values);
+        if (login) {
+            console.log(values.email)
+            setCookie("email", values.email, {path: "/"});
+            setCookie("password", values.password, {path: "/"});
+        }
+    };
     if (login) {
-      setCookie("email", values.email, { path: "/" });
-      setCookie("password", values.password, { path: "/" });
+        console.log(cookies.email);
+        console.log(id)
     }
-  };
-  if (login) {
-    console.log(cookies);
-  }
+    useEffect(() => {
+        Axios.get(`http://localhost:8080/id/${cookies.email}`).then((r => {
+            setId(r.data)
+            console.log(r)
+        }))
+        setCookie("id", id, {path: "/"})
+    }, [login])
 
     const StyledLogin = styled.div`
       display: flex;

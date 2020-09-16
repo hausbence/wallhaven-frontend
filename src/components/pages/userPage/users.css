@@ -1,0 +1,14 @@
+.user__container {
+    text-align: center;
+}
+
+.user__card {
+    font-size: calc(1vw + 0vh + 1vmin);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1% 2%;
+    margin: 1%;
+    background-color: #aaaaaa;
+    width: 10%;
+    margin-block-end: 2%;
+}

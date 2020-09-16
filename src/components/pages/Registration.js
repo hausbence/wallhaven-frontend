@@ -1,12 +1,14 @@
 import React from "react";
 import Axios from "axios";
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const Registration = () => {
+  const history = useHistory();
   const { handleSubmit, register, errors } = useForm();
+
   const onSubmit = (values) => {
-    Axios.post("http://localhost:8080/register", {
+      Axios.post("http://localhost:8080/register", {
       name: values.username,
       password: values.password,
       email: values.email,
@@ -16,9 +18,10 @@ const Registration = () => {
       },
       (error) => {
         console.log(error);
-      }
-    );
-    console.log(values);
+      },
+      history.push("/login")
+  );
+      console.log(values);
   };
 
   //   pattern: {
@@ -28,58 +31,12 @@ const Registration = () => {
   // validate: (value) => value !== "admin" || "Nice try!",
   //   }
 
-    const StyledRegistration = styled.div`
-      display: flex;
-      align-items: center;
-      align-content: center;
-      justify-content: center;
-      flex-flow: column;
-      width: 350px;
-      height: 350px;
-      padding: 50px;
-      margin: 0 auto;
-      border: 1px solid lightgray;
-      background: #88888;
-      
-    
-      h2 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 14px;
-      }
-
-      button {
-        background: #aaaaaa;
-        color: #fff;
-        transform: translateX(23%);
-        padding: 10px;
-        margin-top: 24px;
-        margin-left: 50px;
-        width: 100px;
-        border: none;
-        border-radius: 10px;
-        box-sizing: border-box;
-      }
-      
-      button:hover {
-        background-color: #888888;
-      }
-  `;
-
-    const StyledInput = styled.input`
-      border: 1px solid #000;
-      padding: 10px;
-      margin-left: 50px;
-      margin-top: 15px;
-      width: 150px;
-      box-sizing: border-box;
-    `;
-
   let content = (
     <React.Fragment>
         <h2 className="loginHeader">Registration</h2>
-        <StyledRegistration>
+        <div className="form">
           <form onSubmit={handleSubmit(onSubmit)}>
-              <StyledInput
+              <input className="input-style"
               name="email"
               type="email"
               placeholder="Email"
@@ -89,7 +46,7 @@ const Registration = () => {
             />
             {errors.email && errors.email.message}
 
-            <StyledInput
+            <input className="input-style"
               name="username"
               placeholder="Username"
               ref={register({
@@ -99,7 +56,7 @@ const Registration = () => {
               })}
             />
             {errors.username && errors.username.message}
-            <StyledInput
+            <input className="input-style"
               name="password"
               type="password"
               placeholder="Password"
@@ -111,9 +68,9 @@ const Registration = () => {
             />
             {errors.password && errors.password.message}
 
-            <button type="submit">Submit</button>
-      </form>
-    </StyledRegistration>
+            <button type="submit" className="button">Submit</button>
+          </form>
+        </div>
     </React.Fragment>
   );
   return content;

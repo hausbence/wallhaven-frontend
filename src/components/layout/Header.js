@@ -1,11 +1,29 @@
 import React from "react";
 import "./Header.css";
+import {useCookies} from "react-cookie";
 
 const Header = () => {
-  return (
-    <header className="header">
-      <h1>Wallpaper Heaven</h1>
-    </header>
+    const [cookies] = useCookies(["email", "password"]);
+
+    console.log(cookies);
+
+    let content = (
+        <header className="header">
+            <h1>Wallpaper Heaven</h1>
+        </header>
+    )
+
+    if (cookies.email) {
+        content = (
+            <header className="header">
+                <h1>Wallpaper Heaven</h1>
+                <p className="email">Welcome, {cookies.email}</p>
+            </header>
+        )
+    }
+
+    return (
+        content
   );
 };
 

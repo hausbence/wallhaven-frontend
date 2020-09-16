@@ -3,7 +3,7 @@ import "./Header.css";
 import {useCookies} from "react-cookie";
 
 const Header = () => {
-    const [cookies] = useCookies(["email", "password"]);
+    const [cookies] = useCookies(["id","email", "password"]);
     console.log(cookies);
 
     let content = (

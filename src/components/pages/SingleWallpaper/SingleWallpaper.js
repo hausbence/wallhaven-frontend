@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHttp } from "../../../hooks/http";
 import styled from "styled-components";
 import "./SingleWallpaper.css";
-import loadingGif from "../../../loading2.gif";
+import loadingGif from "../../../resources/loading2.gif";
 import { Link } from "react-router-dom";
 
 const SingleWallpaper = (props) => {

@@ -1,24 +1,24 @@
 import React from "react";
 import Axios from "axios";
 import { useForm } from "react-hook-form";
-import * as base64 from "punycode";
 
 const Registration = () => {
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = (values) => {
-      Axios.post('http://localhost:8080/register', {
-          name: values.username,
-          password : values.password,
-          email: values.email
-      })
-          .then((response) => {
-              console.log(response);
-          }, (error) => {
-              console.log(error);
-          });
-      console.log(values)};
-
-
+    Axios.post("http://localhost:8080/register", {
+      name: values.username,
+      password: values.password,
+      email: values.email,
+    }).then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    console.log(values);
+  };
 
   //   pattern: {
   //     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -59,7 +59,7 @@ const Registration = () => {
         />
         {errors.password && errors.password.message}
 
-        <button type="submit" >Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </React.Fragment>
   );

@@ -28,12 +28,22 @@ const Login = () => {
             setCookie("id", id, {path: "/"})
             setCookie("email", values.email, {path: "/"});
             setCookie("password", values.password, {path: "/"});
+            console.log(cookies.email);
+            console.log(id)
             history.push({
                 pathname: `/`,
             });
         }
 
     };
+
+    useEffect(() => {
+        Axios.get(`http://localhost:8080/id/${cookies.email}`).then((r => {
+            setId(r.data)
+            console.log(r)
+        }))
+        setCookie("id", id, {path: "/"})
+    }, [login])
 
     return (
         <React.Fragment>

@@ -41,8 +41,14 @@
   background-color: #aaaaaa;
 }
 
+.topbar .welcome {
+  float: right;
+  padding: 16px 20px;
+}
+
 .topbar button {
   float: right;
   padding: 10px;
   border-radius: 10px;
+  margin: 5px;
 }

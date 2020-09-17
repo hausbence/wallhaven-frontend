@@ -4,7 +4,6 @@ import {useCookies} from "react-cookie";
 import userlogo from '../../../resources/mini_default_user.png';
 import './Profile.css';
 import {Link} from "react-router-dom";
-import {User} from "firebase";
 
 const Profile = () => {
     const [friends, setFriends] = useState([]);
@@ -31,13 +30,6 @@ const Profile = () => {
             }
 
 
-    function getFavouriteIMGS() {
-        favouriteIDS.forEach((id) => {
-            Axios.get(
-                `https://th.wallhaven.cc/small/ym/ymypxx.jpg`
-            ). then((r) => setfavouriteIMGS(currentState => [...currentState, r.data]))
-        })
-    }
 
     useEffect(() => {
         getFriends().then();
@@ -94,7 +86,8 @@ const Profile = () => {
             }
     );
         setTimeout(() => {
-            Axios.get(`http://localhost:8080/users/${cookies.id}`).then(r => setUsers(r.data))
+            getFriends().then()
+
         }, 300)
         }
 

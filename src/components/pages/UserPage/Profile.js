@@ -55,7 +55,7 @@ const Profile = () => {
             <div key={i} className="friend-container">
                 <p>{user.name}</p>
                 <img className="imageStyle" src={userlogo} alt="userlogo"/>
-                <button onClick={() => (
+                <button className="add-friend-button" onClick={() => (
                     addFriend(user.id)
                 )}>Add friend</button>
             </div>

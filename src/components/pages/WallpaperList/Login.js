@@ -15,9 +15,8 @@ const Login = () => {
     const [cookies, setCookie] = useCookies(["id", "email", "password", "username"]);
     const onSubmit = (values) => {
         Axios.get(
-            `http://localhost:8080/login/${values.email}/${values.password}`
-        ).then((r) => setLogin(r.data)
-        )
+            `http://localhost:8080/login/${values?.email}/${values?.password}`
+        ).then((r) => setLogin(r.data))
         setTimeout(() => {
             Axios.get(`http://localhost:8080/id/${values.email}`).then((r => {
                 setId(r.data)

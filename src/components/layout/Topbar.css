@@ -2,68 +2,138 @@
   --bg-color: #111;
   --text-color: #39ff14;
 }
+@media only screen and (max-width: 1399px) {
+  .topbar {
+    width: 100%;
+    background-color: var(--bg-color);
+    color: #f1f1f1;
+    border-bottom: 1px solid var(--text-color);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
 
-.topbar {
-  width: 100%;
-  background-color: var(--bg-color);
-  color: #f1f1f1;
-  border-bottom: 1px solid var(--text-color);
-  overflow: hidden;
+  .topbar a {
+    color: var(--text-color);
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 3px;
+    border: 1px solid var(--bg-color);
+  }
+
+  .topbar a:hover {
+    background-color: #333333;
+    border: 1px solid var(--text-color);
+  }
+
+  .topbar input[type="text"] {
+    flex-grow: 10;
+    float: right;
+    height: 40px;
+    margin: 5px 10px;
+    padding: 0 30px;
+    border: 1px solid var(--bg-color);
+    border-radius: 5px;
+    background-color: #aaaaaa;
+  }
+
+  .topbar input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 2px 1px var(--text-color);
+  }
+
+  .topbar .welcome {
+    font-weight: 600;
+    padding: 16px 20px;
+  }
+
+  .topbar button {
+    padding: 10px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 2px solid white;
+    border-radius: 10px;
+    max-height: 50px;
+    margin: 5px 30px 5px 5px;
+  }
+
+  .topbar button:hover {
+    cursor: pointer;
+    background-color: #333333;
+    border: 2px solid var(--text-color);
+  }
+
+  .topbar button:focus {
+    cursor: pointer;
+    outline: none;
+  }
 }
+@media only screen and (min-width: 1400px) {
+  .topbar {
+    width: 100%;
+    background-color: var(--bg-color);
+    color: #f1f1f1;
+    border-bottom: 1px solid var(--text-color);
+    overflow: hidden;
+  }
 
-.topbar a {
-  color: var(--text-color);
-  float: left;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  border-radius: 3px;
-  border: 1px solid var(--bg-color);
-}
+  .topbar a {
+    color: var(--text-color);
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 3px;
+    border: 1px solid var(--bg-color);
+  }
 
-.topbar a:hover {
-  background-color: #333333;
-  border: 1px solid var(--text-color);
-}
+  .topbar a:hover {
+    background-color: #333333;
+    border: 1px solid var(--text-color);
+  }
 
-.topbar input[type="text"]:focus {
-  outline: none;
-  box-shadow: 0 0 2px 1px var(--text-color);
-}
+  .topbar input[type="text"] {
+    height: 40px;
+    margin: 5px 10px;
+    padding: 0 5px;
+    border: 1px solid var(--bg-color);
+    border-radius: 5px;
+    background-color: #aaaaaa;
+  }
 
-.topbar input[type="text"] {
-  height: 40px;
-  margin: 5px 10px;
-  padding: 0 5px;
-  border: 1px solid var(--bg-color);
-  border-radius: 5px;
-  background-color: #aaaaaa;
-}
+  .topbar input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 2px 1px var(--text-color);
+  }
 
-.topbar .welcome {
-  float: right;
-  font-weight: 600;
-  padding: 16px 20px;
-}
+  .topbar .welcome {
+    float: right;
+    font-weight: 600;
+    padding: 16px 20px;
+  }
 
-.topbar button {
-  float: right;
-  padding: 10px;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  border: 2px solid white;
-  border-radius: 10px;
-  margin: 5px;
-}
+  .topbar button {
+    float: right;
+    padding: 10px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 5px;
+  }
 
-.topbar button:hover {
-  cursor: pointer;
-  background-color: #333333;
-  border: 2px solid var(--text-color);
-}
+  .topbar button:hover {
+    cursor: pointer;
+    background-color: #333333;
+    border: 2px solid var(--text-color);
+  }
 
-.topbar button:focus {
-  cursor: pointer;
-  outline: none;
+  .topbar button:focus {
+    cursor: pointer;
+    outline: none;
+  }
 }

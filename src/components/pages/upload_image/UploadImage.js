@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import {useCookies} from "react-cookie";
 import {useHistory} from "react-router-dom";
 import './uploadImage.css'
+import Axios from "axios";
 
 
 const UploadImage = () => {
@@ -17,10 +18,16 @@ const UploadImage = () => {
     let picture = ""
     if (image !== null) {
         picture = <img className={"wallpaper__img"} src={image} alt=""/>
-        submitButton = <button>upload</button>
+        submitButton = <button onClick={() => {
+            Axios.post(`http://localhost:8080/addwallpaper/${cookies.id}`, {
+                image: image
+            }).then(r => {
+                console.log(r)
+                history.push("/profile")
+            })}
+        }>upload</button>
         message = <p>Click on upload if you can see your wallpaper</p>
     }
-
 
     const onSubmit = (values) => {
         setImage(values.image)

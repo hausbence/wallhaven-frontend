@@ -4,8 +4,9 @@ import "./Navbar.css";
 import {useCookies} from "react-cookie";
 
 const Navbar = () => {
-    let history = useHistory();
-    const [cookies, removeCookie] = useCookies(["email", "password"]);
+
+  let history = useHistory();
+  const [cookies, removeCookie] = useCookies(["email", "password", "id"]);
 
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
@@ -18,6 +19,7 @@ const Navbar = () => {
     const handleLogout = () => {
         removeCookie("email", "");
         removeCookie("password", "");
+        removeCookie("id", 0)
     }
 
     let content = (

@@ -11,20 +11,30 @@ const Login = () => {
     const {handleSubmit, register, errors} = useForm();
     const history = useHistory();
     const [login, setLogin] = useState(false);
-    const [cookies, setCookie] = useCookies(["id","email", "password"]);
+    const [cookies, setCookie] = useCookies(["id", "email", "password"]);
     const onSubmit = (values) => {
         Axios.get(
-            `http://localhost:8080/login/${values.email}/${values.password}`
-        ).then((r) => setLogin(r.data));
+            `http://localhost:8080/login/${values?.email}/${values?.password}`
+        ).then((r) => setLogin(r.data))
+        setTimeout(() => {
+            Axios.get(`http://localhost:8080/id/${values?.email}`).then((r => {
+                setId(r.data)
+                console.log(r)
+            }));
+        }, 500)
         console.log(values);
-        if (login) {
+        if (login && id !== 0) {
             console.log(values.email)
+            setCookie("id", id, {path: "/"})
             setCookie("email", values.email, {path: "/"});
             setCookie("password", values.password, {path: "/"});
-            history.push("/")
             console.log(cookies.email);
             console.log(id)
+            history.push({
+                pathname: `/`,
+            });
         }
+
     };
 
     useEffect(() => {

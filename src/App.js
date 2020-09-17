@@ -79,6 +79,7 @@ const App = () => {
               <Route exact path="/login" component={Login} />
               <Route exact path="/users" component={Users} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/profile/favourites" component={Profile} />
             </div>
           </React.Fragment>
         </ThemeProvider>

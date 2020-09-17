@@ -35,7 +35,7 @@
 .topbar input[type="text"] {
   height: 40px;
   margin: 5px 10px;
-  padding: 0 15px;
+  padding: 0 5px;
   border: 1px solid var(--bg-color);
   border-radius: 5px;
   background-color: #aaaaaa;
@@ -43,12 +43,26 @@
 
 .topbar .welcome {
   float: right;
+  font-weight: 600;
   padding: 16px 20px;
 }
 
 .topbar button {
   float: right;
   padding: 10px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 2px solid white;
   border-radius: 10px;
   margin: 5px;
+}
+
+.topbar button:hover {
+  cursor: pointer;
+  border: 2px solid var(--text-color);
+}
+
+.topbar button:focus {
+  cursor: pointer;
+  outline: none;
 }

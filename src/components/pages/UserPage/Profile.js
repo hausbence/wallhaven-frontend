@@ -6,8 +6,10 @@ import './Profile.css';
 
 const Profile = () => {
     const [friends, setFriends] = useState([]);
-    const [favourites, setFavourites] = useState([]);
+    const [favouriteIDS, setFavouriteIDS] = useState([]);
+    const [favouriteIMGS, setfavouriteIMGS] = useState([]);
     const [cookies, setCookie] = useCookies(["id","username","email","password"])
+
 
     function getFriends() {
         Axios.get(
@@ -15,25 +17,35 @@ const Profile = () => {
         ). then((r) => setFriends(r.data));
     }
 
-    function getFavourites() {
+    function getFavouriteIDS() {
         Axios.get(
             `http://localhost:8080/profile/favourites/${cookies.id}`
-        ). then((r) => setFavourites(r.data));
+        ). then((r) => setFavouriteIDS(r.data));
+    }
+
+    function getFavouriteIMGS() {
+        favouriteIDS.map((id) => {
+            Axios.get(
+                `https://wallhaven.cc/api/v1/w/${id}`
+            ). then((r) => setfavouriteIMGS(r.data))
+        })
     }
 
     useEffect(() => {
         getFriends();
+        getFavouriteIDS();
+        getFavouriteIMGS();
     }, [])
 
     console.log(cookies);
-    console.log(friends);
-    console.log(favourites, "FAVS");
+    console.log(friends, "FRIENDS");
+    console.log(favouriteIDS, "FAVIDS");
+    console.log(favouriteIMGS, "FAVIMGS");
 
     return (
         <div className="friend-container">
             <h1>Hey, {cookies.username}</h1>
             <h3>Here is a list of your friends: </h3>
-            <button onClick={getFavourites}>GetFavourites</button>
             <React.Fragment>
                 <div>
                     {friends.map((friend, i) => (
@@ -48,6 +60,5 @@ const Profile = () => {
     )
 }
 
-//<img key={i} className="imageStyle" src={userlogo} alt="userlogo"/>
 
 export default Profile;

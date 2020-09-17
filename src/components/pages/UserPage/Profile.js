@@ -97,8 +97,8 @@ const Profile = () => {
     }
 
     const uploadPic = {
-        width: '25%',
-        height: 'auto'
+        height: '150px',
+        width: '300px',
     }
 
     if (friends && favouriteIDS ) {
@@ -107,9 +107,9 @@ const Profile = () => {
             <h1>Hey, {cookies.username}</h1>
             <h3>Here is a list of your friends: </h3>
             <React.Fragment>
-                <div className="friend-card">
+                <div className="friend-container card__container">
                     {friends.map((friend, i) => (
-                        <div key={i} className="friend-container">
+                        <div key={i} className="friend-card">
                             <p>{friend.name}</p>
                             <img className="userlogo-style" src={userlogo} alt="userlogo"/>
                         </div>

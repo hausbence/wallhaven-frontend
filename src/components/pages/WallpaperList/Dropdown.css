@@ -1,28 +1,23 @@
-.box {
+.dropdown {
   text-align: center;
-  width: auto;
-  margin: 2%;
-  padding: 1%;
+  margin: 10px auto;
+  padding: 5px;
 }
 
-.box select {
-  border: 1px solid black;
+.dropdown select {
+  cursor: pointer;
   border-radius: 5px;
   background-color: #aaaaaa;
   color: black;
   padding: 12px;
   width: 250px;
   font-size: 20px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-  -webkit-appearance: button;
   outline: none;
 }
-
-.box:hover::before {
-  color: rgba(255, 255, 255, 0.6);
-  background-color: rgba(255, 255, 255, 0.2);
+.dropdown select:hover {
+  border: 2px solid #39ff14;
 }
 
-.box select option {
-  padding: 30px;
+.dropdown .btn {
+  display: none;
 }

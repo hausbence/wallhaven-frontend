@@ -25,12 +25,14 @@ const WallpaperList = (props) => {
   const handleSubmit = (event) => {
     let result = "&resolutions=" + value;
     setWallpaperUrl(props.url + result);
-    event.preventDefault();
   };
 
   const handleChange = () => {
-    let resolutionValue = document.getElementById("dropdown").value;
+    let resolutionValue = document.getElementById("dropdown-menu").value;
     setValue(resolutionValue);
+    console.log(resolutionValue);
+    let result = "&resolutions=" + resolutionValue;
+    setWallpaperUrl(props.url + result);
   };
 
   const logIsLoading = () => {
@@ -40,20 +42,18 @@ const WallpaperList = (props) => {
   };
 
   let dropDown = (
-    <div>
-      <div className="box">
-        <form onSubmit={handleSubmit}>
-          <label>
-            <select id="dropdown" value={value} onChange={handleChange}>
-              <option value="1920x1080">1920x1080</option>
-              <option value="1680x1050">1680x1050</option>
-              <option value="1280x720">1280x720</option>
-              <option value="">Remove filters</option>
-            </select>
-          </label>
-          <input className={"btn"} type="submit" value="Submit" />
-        </form>
-      </div>
+    <div className="dropdown">
+      <form onSubmit={handleSubmit}>
+        <label>
+          <select id="dropdown-menu" value={value} onChange={handleChange}>
+            <option value="1920x1080">1920x1080</option>
+            <option value="1680x1050">1680x1050</option>
+            <option value="1280x720">1280x720</option>
+            <option value="">Remove filters</option>
+          </select>
+        </label>
+        <input className={"btn"} type="submit" value="Submit" />
+      </form>
     </div>
   );
 

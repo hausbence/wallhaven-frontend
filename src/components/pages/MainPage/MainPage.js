@@ -9,45 +9,43 @@ const MainPage = () => {
   );
 
   return (
-    <div>
+    <React.Fragment>
       <div className={"tag-container"}>
         <Link to={"/tag/537"}>
-          <p>#League of Legends</p>
+          <p>#league_of_legends</p>
         </Link>
         <Link to={"/tag/65348"}>
-          <p>#4K</p>
+          <p>#4k</p>
         </Link>
         <Link to={"/tag/1240"}>
-          <p>#Technology</p>
+          <p>#technology</p>
         </Link>
         <Link to={"/tag/37"}>
-          <p>#Nature</p>
+          <p>#nature</p>
         </Link>
         <Link to={"/tag/14"}>
-          <p>#Science fiction</p>
+          <p>#science_fiction</p>
         </Link>
         <Link to={"/tag/479"}>
-          <p>#Digital art</p>
+          <p>#digital_art</p>
         </Link>
         <Link to={"/tag/711"}>
-          <p>#Landscape</p>
+          <p>#landscape</p>
         </Link>
         <Link to={"/tag/328"}>
-          <p>#Mountains</p>
+          <p>#mountains</p>
         </Link>
         <Link to={"/tag/2278"}>
-          <p>#Minimalism</p>
+          <p>#minimalism</p>
         </Link>
       </div>
-      <div>
-        <WallpaperList url={url} limit="12" mainpage="true" />
-      </div>
+      <WallpaperList url={url} limit="12" mainpage="true" />
       <div className={"tag-container"}>
         <Link to={"/tag/338"}>
           <p>#night</p>
         </Link>
         <Link to={"/tag/55"}>
-          <p>#video-games</p>
+          <p>#video_games</p>
         </Link>
         <Link to={"/tag/7347"}>
           <p>#programming</p>
@@ -56,7 +54,7 @@ const MainPage = () => {
           <p>#plants</p>
         </Link>
         <Link to={"/tag/14"}>
-          <p>#Science fiction</p>
+          <p>#science_fiction</p>
         </Link>
         <Link to={"/tag/17"}>
           <p>#city</p>
@@ -68,13 +66,11 @@ const MainPage = () => {
           <p>#car</p>
         </Link>
         <Link to={"/tag/403"}>
-          <p>#3D</p>
+          <p>#3d</p>
         </Link>
       </div>
-      <div>
-        <WallpaperList url={url} limit="12" mainpage="true" />
-      </div>
-    </div>
+      <WallpaperList url={url} limit="12" mainpage="true" />
+    </React.Fragment>
   );
 };
 

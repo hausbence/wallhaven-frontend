@@ -51,13 +51,13 @@ const Profile = () => {
 
     let friendSuggestions = <h5>Cant find any </h5>;
     if (users.length > 0) {
-        friendSuggestions = <div className={"suggestion__container"}>{users.map((user, i ) => (
-            <div key={i} className="friend-card">
+        friendSuggestions = <div className="friend-card">{users.map((user, i ) => (
+            <div key={i} className="friend-container">
                 <p>{user.name}</p>
                 <img className="imageStyle" src={userlogo} alt="userlogo"/>
                 <button onClick={() => (
                     addFriend(user.id)
-                )}>add friend</button>
+                )}>Add friend</button>
             </div>
         ))}</div>
     }
@@ -70,10 +70,10 @@ const Profile = () => {
     let favs = <p>You dont have any favorites</p>
 
     if (favouriteIDS.length > 0) {
-        favs = <div className={"suggestion__container"}>
+        favs = <div className={"wallpaper-container"}>
             {favouriteIDS.map((id, j ) => (
-                <div key={j} className="friend-card">
-                    <Link to={"/wallpaper/" + id}><img src={`https://th.wallhaven.cc/small/${getSubstring(id)}/${id}.jpg`} alt=""/></Link>
+                <div key={j}>
+                    <Link to={"/wallpaper/" + id}><img className="wallpaper-block" src={`https://th.wallhaven.cc/small/${getSubstring(id)}/${id}.jpg`} alt=""/></Link>
                 </div>
             ))}
         </div>
@@ -89,13 +89,17 @@ const Profile = () => {
             (error) => {
                 console.log(error);
             }
-    );
+        );
         setTimeout(() => {
             getFriends().then()
 
         }, 300)
-        }
-//asd
+    }
+
+    const uploadPic = {
+        width: '25%',
+        height: 'auto'
+    }
 
     if (friends && favouriteIDS ) {
         console.log(uploaded)
@@ -103,22 +107,25 @@ const Profile = () => {
             <h1>Hey, {cookies.username}</h1>
             <h3>Here is a list of your friends: </h3>
             <React.Fragment>
-                <div className={"friends__container"}>
+                <div className="friend-card">
                     {friends.map((friend, i) => (
-                        <div key={i} className="friend-card">
+                        <div key={i} className="friend-container">
                             <p>{friend.name}</p>
-                            <img className="imageStyle" src={userlogo} alt="userlogo"/>
+                            <img className="userlogo-style" src={userlogo} alt="userlogo"/>
                         </div>
                     ))}
                 </div>
                 <h1>Favorites: </h1>
                 {favs}
+                <h1>Your uploads: </h1>
                 <div>
-                    {uploaded.map((img, i) => (
-                        <div key={i} className="friend-card">
-                            <img className="imageStyle" src={img} alt="userlogo"/>
-                        </div>
-                    ) )}
+                    <div className="wallpaper-container">
+                        {uploaded.map((img, i) => (
+                            <div key={i}>
+                                <img className="wallpaper-block" style={uploadPic} src={img} alt="userlogo"/>
+                            </div>
+                        ))}
+                    </div>
                 </div>
                 <div><h1>Friend suggestions:</h1>
                     {friendSuggestions}

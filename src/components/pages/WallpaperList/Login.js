@@ -4,9 +4,11 @@ import Axios from "axios";
 import {useCookies} from "react-cookie";
 import './Login.css';
 import {useHistory} from "react-router-dom";
+import Navbar from "../../layout/Navbar";
 
 
 const Login = () => {
+    const [cookies1, removeCookie] = useCookies(["email", "password", "id", "username"]);
     const [id, setId] = useState(0)
     const [username, setUsername] = useState("");
     const {handleSubmit, register, errors} = useForm();
@@ -14,6 +16,8 @@ const Login = () => {
     const [login, setLogin] = useState(false);
     const [cookies, setCookie] = useCookies(["id", "email", "password", "username"]);
     const onSubmit = (values) => {
+        document.getElementById("email").setAttribute("readonly", true)
+        document.getElementById("password").setAttribute("readonly", true)
         Axios.get(
             `http://localhost:8080/login/${values?.email}/${values?.password}`
         ).then((r) => setLogin(r.data))
@@ -30,7 +34,6 @@ const Login = () => {
             }));
         }, 300)
         console.log(values);
-        setTimeout(() => {
             if (login ) {
                 console.log(values.email)
                 setCookie("id", id, {path: "/"})
@@ -41,10 +44,16 @@ const Login = () => {
                     pathname: `/`,
                 });
             }
-
-        })
-
     };
+
+    const removeAttributes  = () => {
+        document.getElementById("email").removeAttribute("readonly")
+        document.getElementById("password").removeAttribute("readonly")
+        removeCookie("email", "");
+        removeCookie("password", "");
+        removeCookie("id", 0)
+        removeCookie("username", "");
+    }
 
     return (
         <React.Fragment>
@@ -52,6 +61,7 @@ const Login = () => {
             <div className="form">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input className="input-style"
+                           id={"email"}
                            name="email"
                            type="email"
                            placeholder="Email"
@@ -61,6 +71,7 @@ const Login = () => {
                     />
                     {errors.email && errors.email.message}
                     <input className="input-style"
+                           id={"password"}
                            name="password"
                            type="password"
                            placeholder="Password"
@@ -74,6 +85,9 @@ const Login = () => {
 
                     <button type="submit" className="button">Submit</button>
                 </form>
+                <button onClick={() => {
+                    removeAttributes();
+                }}>Try again</button>
             </div>
         </React.Fragment>
     );

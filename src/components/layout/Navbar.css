@@ -1,5 +1,14 @@
-.navbar {
-  margin: 0;
-  float: left;
-  clear: right;
+@media only screen and (max-width: 1399px) {
+  .navbar {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .navbar {
+    margin: 0;
+    float: left;
+    clear: right;
+  }
 }

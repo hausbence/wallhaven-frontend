@@ -17,6 +17,7 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./components/layout/Theme";
 import { GlobalStyles } from "./components/layout/GlobalStyles";
 import Users from "./components/pages/UserPage/Users";
+import UploadImage from "./components/pages/upload_image/UploadImage";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
@@ -79,6 +80,7 @@ const App = () => {
               <Route exact path="/login" component={Login} />
               <Route exact path="/users" component={Users} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/upload" component={UploadImage} />
             </div>
           </React.Fragment>
         </ThemeProvider>

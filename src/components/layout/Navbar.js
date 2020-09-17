@@ -47,7 +47,7 @@ const Navbar = () => {
                 <Link to="/random">Random</Link>
                 <Link to="/toplist">Toplist</Link>
                 <Link to="/latest">Latest</Link>
-                <Link to="/login">Profile</Link>
+                <Link to="/profile">Profile</Link>
                 <Link to="/" onClick={handleLogout}>Logout</Link>
                 <input
                     type="text"

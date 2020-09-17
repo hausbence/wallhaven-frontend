@@ -53,6 +53,7 @@ const Login = () => {
         removeCookie("password", "");
         removeCookie("id", 0)
         removeCookie("username", "");
+        console.log(cookies)
     }
 
     return (

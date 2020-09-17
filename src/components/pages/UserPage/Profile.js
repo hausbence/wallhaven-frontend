@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 const Profile = () => {
     const [friends, setFriends] = useState([]);
     const [users, setUsers ] = useState([])
+    const [uploaded, setUploaded ] = useState([])
     const [favouriteIDS, setFavouriteIDS] = useState([]);
     const [favouriteIMGS, setfavouriteIMGS] = useState([]);
     const [cookies, setCookie] = useCookies(["id","username","email","password"])
@@ -26,7 +27,11 @@ const Profile = () => {
                 return Axios.get(`http://localhost:8080/users/${cookies.id}`)
             }).then(response => {
                 setUsers(response.data)
-            }).catch((error) => console.log(error.response));
+                return Axios.get(`http://localhost:8080/uploaded/${cookies.id}`)
+            }).then(response => {
+                setUploaded(response.data)
+            })
+            .catch((error) => console.log(error.response));
             }
 
 
@@ -90,9 +95,10 @@ const Profile = () => {
 
         }, 300)
         }
-
+//asd
 
     if (friends && favouriteIDS ) {
+        console.log(uploaded)
         content = <div className="friend-container">
             <h1>Hey, {cookies.username}</h1>
             <h3>Here is a list of your friends: </h3>
@@ -107,6 +113,13 @@ const Profile = () => {
                 </div>
                 <h1>Favorites: </h1>
                 {favs}
+                <div>
+                    {uploaded.map((img, i) => (
+                        <div key={i} className="friend-card">
+                            <img className="imageStyle" src={img} alt="userlogo"/>
+                        </div>
+                    ) )}
+                </div>
                 <div><h1>Friend suggestions:</h1>
                     {friendSuggestions}
                 </div>

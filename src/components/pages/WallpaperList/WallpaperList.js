@@ -46,8 +46,9 @@ const WallpaperList = (props) => {
       <form onSubmit={handleSubmit}>
         <label>
           <select id="dropdown-menu" value={value} onChange={handleChange}>
+            <option value="3840x2160">3840x2160</option>
+            <option value="2560x1440">2560x1440</option>
             <option value="1920x1080">1920x1080</option>
-            <option value="1680x1050">1680x1050</option>
             <option value="1280x720">1280x720</option>
             <option value="">Remove filters</option>
           </select>

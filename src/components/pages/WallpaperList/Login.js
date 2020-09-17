@@ -8,30 +8,42 @@ import {useHistory} from "react-router-dom";
 
 const Login = () => {
     const [id, setId] = useState(0)
+    const [username, setUsername] = useState("");
     const {handleSubmit, register, errors} = useForm();
     const history = useHistory();
     const [login, setLogin] = useState(false);
-    const [cookies, setCookie] = useCookies(["id", "email", "password"]);
+    const [cookies, setCookie] = useCookies(["id", "email", "password", "username"]);
     const onSubmit = (values) => {
         Axios.get(
-            `http://localhost:8080/login/${values?.email}/${values?.password}`
-        ).then((r) => setLogin(r.data))
+            `http://localhost:8080/login/${values.email}/${values.password}`
+        ).then((r) => setLogin(r.data)
+        )
         setTimeout(() => {
-            Axios.get(`http://localhost:8080/id/${values?.email}`).then((r => {
+            Axios.get(`http://localhost:8080/id/${values.email}`).then((r => {
                 setId(r.data)
                 console.log(r)
             }));
-        }, 500)
+        }, 100)
+        setTimeout(() => {
+            Axios.get(`http://localhost:8080/username/${values.email}`).then((r => {
+                setUsername(r.data)
+                console.log(r)
+            }));
+        }, 300)
         console.log(values);
-        if (login && id !== 0) {
-            console.log(values.email)
-            setCookie("id", id, {path: "/"})
-            setCookie("email", values.email, {path: "/"});
-            setCookie("password", values.password, {path: "/"});
-            history.push({
-                pathname: `/`,
-            });
-        }
+        setTimeout(() => {
+            if (login ) {
+                console.log(values.email)
+                setCookie("id", id, {path: "/"})
+                setCookie("email", values.email, {path: "/"});
+                setCookie("password", values.password, {path: "/"});
+                setCookie("username", username, {path: "/"})
+                history.push({
+                    pathname: `/`,
+                });
+            }
+
+        })
 
     };
 

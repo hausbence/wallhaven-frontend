@@ -51,8 +51,8 @@ const Profile = () => {
 
     let friendSuggestions = <h5>Cant find any </h5>;
     if (users.length > 0) {
-        friendSuggestions = <div className="friend-card">{users.map((user, i ) => (
-            <div key={i} className="friend-container">
+        friendSuggestions = <div className="friend-container card__container">{users.map((user, i ) => (
+            <div key={i} className="friend-card">
                 <p>{user.name}</p>
                 <img className="imageStyle" src={userlogo} alt="userlogo"/>
                 <button className="add-friend-button" onClick={() => (

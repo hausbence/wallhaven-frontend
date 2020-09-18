@@ -37,6 +37,7 @@ const Navbar = () => {
         {!cookies.email ? <Link to="/registration">Registration</Link> : null}
         {!cookies.email ? <Link to="/login">Login</Link> : null}
         {cookies.email ? <Link to="/profile">Profile</Link> : null}
+        {cookies.email ? <Link to="/upload">Upload</Link> : null}
         {cookies.email ? (
           <Link to="/" onClick={handleLogout}>
             Logout

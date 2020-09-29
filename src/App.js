@@ -12,6 +12,7 @@ import MainPage from "./components/pages/MainPage/MainPage";
 import Registration from "./components/pages/Registration";
 import Login from "./components/pages/WallpaperList/Login";
 import Profile from "./components/pages/UserPage/Profile";
+import FriendPage from "./components/pages/UserPage/FriendPage";
 
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./components/layout/Theme";
@@ -81,6 +82,7 @@ const App = () => {
               <Route exact path="/users" component={Users} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/profile/favourites" component={Profile} />
+              <Route exact path="/friend/:id" component={FriendPage} />
               <Route exact path="/upload" component={UploadImage} />
             </div>
           </React.Fragment>

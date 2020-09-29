@@ -16,7 +16,7 @@ const Profile = () => {
 
    async function getFriends() {
         await Axios.get(
-            `http://localhost:8080/profile/${cookies.id}`
+            `http://localhost:8080/friends/${cookies.id}`
         )
             .then((response) => {
                 setFriends(response.data);
@@ -43,11 +43,7 @@ const Profile = () => {
     }, [])
 
 
-    console.log(cookies);
-    console.log(friends, "FRIENDS");
-    console.log(favouriteIDS, "FAVIDS");
-    console.log(favouriteIMGS, "FAVIMGS");
-    console.log(users, "Users")
+    console.log(uploaded, "uploaded")
 
     let friendSuggestions = <h5>Cant find any </h5>;
     if (users.length > 0) {
@@ -68,12 +64,12 @@ const Profile = () => {
 
 
     let favs = <p>You dont have any favorites</p>
-
+    console.log(favouriteIDS)
     if (favouriteIDS.length > 0) {
         favs = <div className={"wallpaper-container"}>
-            {favouriteIDS.map((id, j ) => (
+            {favouriteIDS.map((fav, j ) => (
                 <div key={j}>
-                    <Link to={"/wallpaper/" + id}><img className="wallpaper-block" src={`https://th.wallhaven.cc/small/${getSubstring(id)}/${id}.jpg`} alt=""/></Link>
+                    <Link to={"/wallpaper/" + fav.wallpaperId}><img className="wallpaper-block" src={`https://th.wallhaven.cc/small/${getSubstring(fav.wallpaperId)}/${fav.wallpaperId}.jpg`} alt=""/></Link>
                 </div>
             ))}
         </div>
@@ -103,17 +99,20 @@ const Profile = () => {
 
     if (friends && favouriteIDS ) {
         console.log(uploaded)
+        console.log(friends[0]?.friends,  "ADA")
         content = <div className="friend-container">
             <h1>Hey, {cookies.username}</h1>
             <h3>Here is a list of your friends: </h3>
             <React.Fragment>
                 <div className="friend-container card__container">
+
                     {friends.map((friend, i) => (
-                        <div key={i} className="friend-card">
-                            <p>{friend.name}</p>
-                            <img className="userlogo-style" src={userlogo} alt="userlogo"/>
-                        </div>
-                    ))}
+                            <div key={i} className="friend-card">
+                                <p>{friend.name}</p>
+                                <img className="userlogo-style" src={userlogo} alt="userlogo"/>
+                            </div>
+                        ))
+                    }
                 </div>
                 <h1>Favorites: </h1>
                 {favs}
@@ -122,7 +121,7 @@ const Profile = () => {
                     <div className="wallpaper-container">
                         {uploaded.map((img, i) => (
                             <div key={i}>
-                                <img className="wallpaper-block" style={uploadPic} src={img} alt="userlogo"/>
+                                <img className="wallpaper-block" style={uploadPic} src={img.link} alt="userlogo"/>
                             </div>
                         ))}
                     </div>

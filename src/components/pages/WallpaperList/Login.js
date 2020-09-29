@@ -12,6 +12,7 @@ const Login = () => {
     "id",
     "username",
   ]);
+  const [reload, setReload] = useState(false)
   const [id, setId] = useState(0);
   const [users, setUsers] = useState([])
   const [username, setUsername] = useState("");
@@ -26,8 +27,8 @@ const Login = () => {
   ]);
   let url = "http://localhost:8080/alluser";
 
-  useEffect(() => {
 
+  useEffect(() => {
     Axios.get(url).then(r => {
       setUsers(r.data)
     })

@@ -1,0 +1,41 @@
+.wallpaper-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1600px;
+  margin: 5px auto;
+}
+
+.wallpaper-block img {
+  display: block;
+  border-radius: 8px;
+}
+
+.wallpaper-block {
+  flex-basis: 0;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.wallpaper-block:hover {
+  border: 2px solid greenyellow;
+  margin: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.button-container button {
+  width: 130px;
+  margin: 40px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.button-container button:hover {
+  border: 1px solid #39ff14;
+}

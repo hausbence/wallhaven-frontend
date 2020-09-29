@@ -1,0 +1,52 @@
+:root {
+  --bg-color: #111;
+  --text-color: #39ff14;
+}
+
+.topbar {
+  background-color: var(--bg-color);
+  color: #f1f1f1;
+  border-bottom: 1px solid var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar .welcome {
+  font-weight: 600;
+  margin: 0 30px;
+  white-space: nowrap;
+}
+
+.topbar button {
+  padding: 10px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 2px solid white;
+  border-radius: 10px;
+  max-height: 50px;
+  margin: 5px 30px 5px 5px;
+}
+
+.topbar button:hover {
+  cursor: pointer;
+  background-color: #333333;
+  border: 2px solid var(--text-color);
+}
+
+.topbar button:focus {
+  cursor: pointer;
+  outline: none;
+}
+
+@media only screen and (max-width: 950px) {
+  .topbar {
+    background-color: var(--bg-color);
+    color: #f1f1f1;
+    border-bottom: 1px solid var(--text-color);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

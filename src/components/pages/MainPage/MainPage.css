@@ -1,0 +1,18 @@
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1600px;
+  margin: 20px auto;
+  padding: 5px;
+}
+
+.tag-container a {
+  margin: 10px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.tag-container a:hover {
+  color: #39ff14;
+}

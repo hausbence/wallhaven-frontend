@@ -8,7 +8,7 @@
   display: flex;
   flex-flow: column;
   justify-content: space-around;
-  width: 500px;
+  max-width: 500px;
   height: 350px;
   margin: 20px auto;
   border: 1px solid black;

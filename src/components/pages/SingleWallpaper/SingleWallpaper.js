@@ -143,13 +143,13 @@ const SingleWallpaper = (props) => {
                 button = <button onClick={() => {
                     addFavorite(wallpaper?.id)
                 }
-                } className="fav__button">add to favorites</button>
+                } className="btn">Add to favorites</button>
             } else {
                 if (cookies.id === "0") {
-                    button = "login to add wallpaper to favorites"
+                    button = "Please log in to add wallpaper to favorites"
                 }
                 else {
-                    button = <p>favorite!</p>
+                    button = <p>One of your favorites</p>
                 }
             }
 
@@ -210,7 +210,7 @@ const SingleWallpaper = (props) => {
                                 </option>
                             </select>
                             <button className={"btn"} onClick={selectionSetter}>
-                                submit
+                                Submit
                             </button>
                         </DropDown>
                     </SideBar>

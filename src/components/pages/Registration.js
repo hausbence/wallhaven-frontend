@@ -19,7 +19,9 @@ const Registration = () => {
       (error) => {
         console.log(error);
       },
-      history.push("/login")
+        setTimeout(() => {
+            history.push("/login")
+        }, 1000)
     );
     console.log(values);
   };

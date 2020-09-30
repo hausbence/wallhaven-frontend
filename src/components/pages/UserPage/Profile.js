@@ -7,8 +7,8 @@ import {Link} from "react-router-dom";
 
 const Profile = () => {
     const [friends, setFriends] = useState([]);
-    const [users, setUsers ] = useState([])
-    const [uploaded, setUploaded ] = useState([])
+    const [users, setUsers ] = useState([]);
+    const [uploaded, setUploaded ] = useState([]);
     const [favouriteIDS, setFavouriteIDS] = useState([]);
     const [favouriteIMGS, setfavouriteIMGS] = useState([]);
     const [cookies, setCookie] = useCookies(["id","username","email","password"])
@@ -53,7 +53,7 @@ const Profile = () => {
                 <img className="imageStyle" src={userlogo} alt="userlogo"/>
                 <button className="add-friend-button" onClick={() => (
                     addFriend(user.id)
-                )}>Add friend</button>
+                )}>Follow</button>
             </div>
         ))}</div>
     }
@@ -93,8 +93,10 @@ const Profile = () => {
     }
 
     const uploadPic = {
-        height: '150px',
-        width: '300px',
+        maxHeight: '200px',
+        maxWidth: '350px',
+        height: 'auto',
+        width: 'auto',
     }
 
     if (friends && favouriteIDS ) {
@@ -102,14 +104,16 @@ const Profile = () => {
         console.log(friends[0]?.friends,  "ADA")
         content = <div className="friend-container">
             <h1>Hey, {cookies.username}</h1>
-            <h3>Here is a list of your friends: </h3>
+            <h3>Here is a list of who you follow: </h3>
             <React.Fragment>
                 <div className="friend-container card__container">
 
                     {friends.map((friend, i) => (
                             <div key={i} className="friend-card">
                                 <p>{friend.name}</p>
-                                <img className="userlogo-style" src={userlogo} alt="userlogo"/>
+                                <Link to={`/friend/${friend.id}`}>
+                                    <img className="userlogo-style" src={userlogo} alt="userlogo"/>
+                                </Link>
                             </div>
                         ))
                     }

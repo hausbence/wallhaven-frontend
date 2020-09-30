@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import { useCookies } from "react-cookie";
@@ -12,9 +12,9 @@ const Login = () => {
     "id",
     "username",
   ]);
-  const [reload, setReload] = useState(false)
+  const [reload, setReload] = useState(false);
   const [id, setId] = useState(0);
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
   const [username, setUsername] = useState("");
   const { handleSubmit, register, errors } = useForm();
   const history = useHistory();
@@ -27,18 +27,18 @@ const Login = () => {
   ]);
   let url = "http://localhost:8080/alluser";
 
-
   useEffect(() => {
-    Axios.get(url).then(r => {
-      setUsers(r.data)
-    })
-  },[login])
+    Axios.get(url).then((r) => {
+      setUsers(r.data);
+    });
+  }, [login]);
+
   const onSubmit = (values) => {
     document.getElementById("email").setAttribute("readonly", true);
     document.getElementById("password").setAttribute("readonly", true);
-    console.log(users)
+    console.log(users);
 
-    users.forEach(user => {
+    users.forEach((user) => {
       if (user.password === values.password && user.email === values.email) {
         setCookie("id", user.id, { path: "/" });
         setCookie("email", values.email, { path: "/" });
@@ -48,17 +48,18 @@ const Login = () => {
           pathname: `/`,
         });
       }
-    })
+    });
   };
 
   let content = "Loading...";
 
   if (users.length !== 0) {
-    content =  <React.Fragment>
-      <div className="form">
-        <h2 className="loginHeader">Login</h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input
+    content = (
+      <React.Fragment>
+        <div className="form">
+          <h2 className="loginHeader">Login</h2>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input
               className="input-style"
               id={"email"}
               name="email"
@@ -67,9 +68,9 @@ const Login = () => {
               ref={register({
                 required: true,
               })}
-          />
-          {errors.email && errors.email.message}
-          <input
+            />
+            {errors.email && errors.email.message}
+            <input
               className="input-style"
               id={"password"}
               name="password"
@@ -80,23 +81,24 @@ const Login = () => {
                 minLength: 2,
                 maxLength: 16,
               })}
-          />
-          {errors.password && errors.password.message}
+            />
+            {errors.password && errors.password.message}
 
-          <button type="submit" className="button">
-            Submit
-          </button>
-          <button
+            <button type="submit" className="button">
+              Submit
+            </button>
+            <button
               className="button"
               onClick={() => {
                 removeAttributes();
               }}
-          >
-            Try again
-          </button>
-        </form>
-      </div>
-    </React.Fragment>
+            >
+              Try again
+            </button>
+          </form>
+        </div>
+      </React.Fragment>
+    );
   }
 
   const removeAttributes = () => {
@@ -108,7 +110,7 @@ const Login = () => {
     removeCookie("username", "");
   };
 
-  return content
+  return content;
 };
 
 export default Login;

@@ -37,8 +37,8 @@ const FriendPage = () => {
     }, [])
 
 
-    console.log(favourites);
-    console.log(friendData);
+    console.log(favourites, "favourites");
+    console.log(friendData, "friendData");
 
     const getSubstring = (wid) => {
         return wid.substring(0,2)

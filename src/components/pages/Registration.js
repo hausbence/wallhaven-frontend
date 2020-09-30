@@ -4,25 +4,27 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 const Registration = () => {
-  const history = useHistory();
-  const { handleSubmit, register, errors } = useForm();
-
-  const onSubmit = (values) => {
-    Axios.post("http://localhost:8080/register", {
-      name: values.username,
-      password: values.password,
-      email: values.email,
-    }).then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      },
-      history.push("/login")
+    const onSubmit = (values) => {
+        Axios.post("http://localhost:8080/register", {
+            name: values.username,
+            password: values.password,
+            email: values.email,
+        }).then(
+            (response) => {
+                console.log(response);
+            },
+            (error) => {
+                console.log(error);
+            },
+            setTimeout(() => {
+                history.push("/login")
+            }, 1000)
     );
-    console.log(values);
-  };
+        console.log(values);
+    };
+    const history = useHistory();
+
+  const { handleSubmit, register, errors } = useForm();
 
   let content = (
     <React.Fragment>

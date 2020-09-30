@@ -24,6 +24,10 @@ const FriendPage = () => {
             })
             .then((response) => {
                 setFriendData(response.data);
+                return Axios.get(`http://localhost:8080/uploaded/${friendId}`)
+            })
+            .then((response) => {
+                setUploadedIMGSs(response.data);
             })
             .catch((error) => console.log(error.response));
     }
@@ -40,6 +44,13 @@ const FriendPage = () => {
         return wid.substring(0,2)
     }
 
+    const uploadPicStyle = {
+        maxHeight: '200px',
+        maxWidth: '350px',
+        height: 'auto',
+        width: 'auto',
+    }
+
     let favouritesContent = <p>{friendData.name} doesn't have any favourites</p>
     if (favourites.length > 0) {
         favouritesContent = <div className={"wallpaper-container"}>
@@ -51,16 +62,33 @@ const FriendPage = () => {
         </div>
     }
 
+    let uploadedContent = <p>{friendData.name} doesn't have any uploaded pictures</p>
+    if (uploadedIMGS.length > 0) {
+        uploadedContent = <div className="wallpaper-container">
+            {uploadedIMGS.map((fav, i) => (
+                <div key={i}>
+                    <img className="wallpaper-block" style={uploadPicStyle} src={fav.link} alt=""/>
+                </div>
+            ))}
+        </div>
+    }
+
     return  (
         <React.Fragment>
             <div className="friend-container">
                 <div>
-                    <h1>Page of {friendData.name}</h1>
+                    <h1>{friendData.name}'s</h1>
                 </div>
                 <div>
-                    <h3>{friendData.name}'s favourites: </h3>
+                    <h3>Favourites: </h3>
                     <div>
                         {favouritesContent}
+                    </div>
+                </div>
+                <div>
+                    <h3>Uploads: </h3>
+                    <div>
+                        {uploadedContent}
                     </div>
                 </div>
             </div>

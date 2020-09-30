@@ -93,8 +93,10 @@ const Profile = () => {
     }
 
     const uploadPic = {
-        height: '150px',
-        width: '300px',
+        maxHeight: '200px',
+        maxWidth: '350px',
+        height: 'auto',
+        width: 'auto',
     }
 
     if (friends && favouriteIDS ) {

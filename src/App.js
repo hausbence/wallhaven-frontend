@@ -19,6 +19,7 @@ import { lightTheme, darkTheme } from "./components/layout/Theme";
 import { GlobalStyles } from "./components/layout/GlobalStyles";
 import Users from "./components/pages/UserPage/Users";
 import UploadImage from "./components/pages/upload_image/UploadImage";
+import UpdateProfile from "./components/updateProfile/UpdateProfile";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
@@ -84,6 +85,7 @@ const App = () => {
               <Route exact path="/profile/favourites" component={Profile} />
               <Route exact path="/friend/:id" component={FriendPage} />
               <Route exact path="/upload" component={UploadImage} />
+              <Route exact path="/settings" component={UpdateProfile} />
             </div>
           </React.Fragment>
         </ThemeProvider>

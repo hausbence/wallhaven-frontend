@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useCookies } from "react-cookie";
 import { useHistory } from "react-router-dom";
-import "./uploadImage.css";
+import "./UploadImage.css";
 import Axios from "axios";
 
 const UploadImage = () => {
@@ -31,18 +31,18 @@ const UploadImage = () => {
   if (image !== null) {
     picture = <img className={"wallpaper__img"} src={image} alt="" />;
     submitButton = (
-      <button
-        onClick={() => {
-          Axios.post(`http://localhost:8080/addwallpaper/${cookies.id}`, {
-            image: image,
-          }).then((r) => {
-            console.log(r);
-            history.push("/profile");
-          });
-        }}
-      >
-        Upload
-      </button>
+        <button
+            onClick={() => {
+              Axios.post(`http://localhost:8080/addwallpaper/${cookies.id}`, {
+                image: image,
+              }).then((r) => {
+                console.log(r);
+                history.push("/profile");
+              });
+            }}
+        >
+          Upload
+        </button>
     );
     message = <p>Click on upload if you can see your wallpaper</p>;
   }
@@ -56,20 +56,20 @@ const UploadImage = () => {
     formData.append("file", uploadedImage);
 
     submitButton = (
-      <button
-        onClick={() => {
-          Axios.post(
-            `http://localhost:8080/uploadwallpaper/${cookies.id}`,
-            formData,
-            { headers: { "Content-Type": "multipart/form-data" } }
-          ).then((r) => {
-            console.log(r);
-            history.push("/profile");
-          });
-        }}
-      >
-        Upload
-      </button>
+        <button
+            onClick={() => {
+              Axios.post(
+                  `http://localhost:8080/uploadwallpaper/${cookies.id}`,
+                  formData,
+                  { headers: { "Content-Type": "multipart/form-data" } }
+              ).then((r) => {
+                console.log(r);
+                history.push("/profile");
+              });
+            }}
+        >
+          Upload
+        </button>
     );
     message = <p>Click on upload if you can see your wallpaper</p>;
   }
@@ -80,36 +80,38 @@ const UploadImage = () => {
   };
 
   return (
-    <React.Fragment>
-      <h2 className="loginHeader">Upload an image</h2>
-      <div className="form">
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <React.Fragment>
+        <h2 className="loginHeader">Upload an image</h2>
+        <div className="form">
+          <form onSubmit={handleSubmit(onSubmit)}>
 
-          <input
-            id={"upload-button"}
-            name="file"
-            type="file"
-            placeholder="file"
-            accept="image/png, image/jpeg"
-            ref={register({
-              required: true,
-            })}
-          />
+            <input
+                id={"upload-button"}
+                name="file"
+                type="file"
+                placeholder="file"
+                accept="image/png, image/jpeg"
+                ref={register({
+                  required: true,
+                })}
+            />
 
-          {errors.email && errors.email.message}
-          <button type="submit" className="button">
-            Submit
-          </button>
-        </form>
-      </div>
+            {errors.email && errors.email.message}
+            <button type="submit" className="button">
+              Submit
+            </button>
+          </form>
+        </div>
 
-      <div className={"wallpaper__container"}>
-        {picture}
-        {message}
-        {submitButton}
-      </div>
-    </React.Fragment>
+        <div className={"wallpaper__container"}>
+          {picture}
+          {message}
+          {submitButton}
+        </div>
+      </React.Fragment>
   );
 };
 
 export default UploadImage;
+
+

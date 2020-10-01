@@ -32,29 +32,19 @@ const FriendPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(favourites, "favourites");
-  console.log(friendData, "friendData");
-
   const getSubstring = (wid) => {
     return wid.substring(0, 2);
-  };
-
-  const uploadPicStyle = {
-    maxHeight: "200px",
-    maxWidth: "350px",
-    height: "auto",
-    width: "auto",
   };
 
   let favouritesContent = <p>{friendData.name} doesn't have any favourites</p>;
   if (favourites.length > 0) {
     favouritesContent = (
-      <div className={"wallpaper-container"}>
+      <div className={"profile-wallpaper-container"}>
         {favourites.map((fav, i) => (
           <div key={i}>
             <Link to={"/wallpaper/" + fav.wallpaperId}>
               <img
-                className="wallpaper-block"
+                className="profile-wallpaper-block"
                 src={`https://th.wallhaven.cc/small/${getSubstring(
                   fav.wallpaperId
                 )}/${fav.wallpaperId}.jpg`}
@@ -72,15 +62,10 @@ const FriendPage = () => {
   );
   if (uploadedIMGS.length > 0) {
     uploadedContent = (
-      <div className="wallpaper-container">
+      <div className="profile-wallpaper-container">
         {uploadedIMGS.map((fav, i) => (
           <div key={i}>
-            <img
-              className="wallpaper-block"
-              style={uploadPicStyle}
-              src={fav.link}
-              alt=""
-            />
+            <img className="profile-wallpaper-block" src={fav.link} alt="" />
           </div>
         ))}
       </div>
@@ -88,21 +73,13 @@ const FriendPage = () => {
   }
 
   return (
-    <React.Fragment>
-      <div className="friend-container">
-        <div>
-          <h1>{friendData.name}'s</h1>
-        </div>
-        <div>
-          <h3>Favourites: </h3>
-          <div>{favouritesContent}</div>
-        </div>
-        <div>
-          <h3>Uploads: </h3>
-          <div>{uploadedContent}</div>
-        </div>
-      </div>
-    </React.Fragment>
+    <div className="profile-container">
+      <h1>{friendData.name}'s</h1>
+      <h1>Favourites: </h1>
+      {favouritesContent}
+      <h1>Uploads: </h1>
+      {uploadedContent}
+    </div>
   );
 };
 

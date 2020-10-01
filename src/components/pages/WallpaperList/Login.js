@@ -22,10 +22,8 @@ const Login = () => {
 
   async function loginCheck(values) {
     const result = await checkLogin(values);
-    console.log(result);
     if (result) {
       const user = await getUserData(values);
-      console.log(user);
       setCookie("id", user.id, { path: "/" });
       setCookie("email", user.email, { path: "/" });
       setCookie("password", user.password, { path: "/" });

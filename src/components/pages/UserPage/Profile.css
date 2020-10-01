@@ -41,7 +41,8 @@
   object-fit: cover;
 }
 
-.profile-container .settings-button {
+.profile-container .settings-button a {
+  display: block;
   color: black;
   background-color: #888888;
   float: right;
@@ -53,7 +54,7 @@
   border: 1px solid green;
 }
 
-.profile-container .settings-button:hover {
+.profile-container .settings-button a:hover {
   background-color: #555555;
   border: 1px solid var(--text-color);
 }

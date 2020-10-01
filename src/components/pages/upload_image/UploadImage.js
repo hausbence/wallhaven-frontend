@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useCookies } from "react-cookie";
 import { useHistory } from "react-router-dom";
-import "./uploadImage.css";
+import "./UploadImage.css";
 import Axios from "axios";
 
 const UploadImage = () => {
@@ -48,7 +48,7 @@ const UploadImage = () => {
             id={"image"}
             name="image"
             type="text"
-            placeholder="image url"
+            placeholder="Image URL"
             ref={register({
               required: true,
             })}

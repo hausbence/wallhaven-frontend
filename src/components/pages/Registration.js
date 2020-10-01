@@ -4,27 +4,73 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 const Registration = () => {
-    const onSubmit = (values) => {
+    const history = useHistory();
+    const { handleSubmit, register, errors } = useForm();
+
+    const url = "http://localhost:8080"
+
+
+
+
+
+
+
+    async function register1(values) {
+        let result = await nameCheck(values)
+        console.log(result)
+        if (!result) {
+            let emailResult = await  emailCheck(values)
+            console.log(emailResult)
+            if (!emailResult) {
+
+                finishRegistration(values)
+                setTimeout(() => {
+                    history.push("/login")
+                }, 500)
+            }
+            else {
+                alert("email is already taken")
+            }
+
+            }
+
+        else {
+            alert("username is already taken")
+        }
+    }
+
+    const emailCheck = (values) => {
+        return new Promise(resolve => {
+            Axios.get(url + "/available/email/" + values.email).then(r => {
+                resolve(r.data)
+            })
+        })
+    }
+
+
+    const nameCheck = (values) => {
+        return new Promise(resolve => {
+            Axios.get(url + "/available/name/" + values.name).then(r => {
+                resolve(r.data)
+            })
+        })
+    }
+
+
+    const finishRegistration= (values) => {
         Axios.post("http://localhost:8080/register", {
             name: values.username,
             password: values.password,
             email: values.email,
-        }).then(
-            (response) => {
-                console.log(response);
-            },
-            (error) => {
-                console.log(error);
-            },
-            setTimeout(() => {
-                history.push("/login")
-            }, 1000)
-    );
-        console.log(values);
-    };
-    const history = useHistory();
+        }).then();
+    }
 
-  const { handleSubmit, register, errors } = useForm();
+
+
+
+    const onSubmit = (values) => {
+        register1(values).then()
+    };
 
   let content = (
     <React.Fragment>

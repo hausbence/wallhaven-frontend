@@ -1,0 +1,46 @@
+.update__editIcon {
+    width: 20px;
+}
+
+
+
+.update__mainContainer {
+    text-align: center;
+    border: 5px solid black;
+    border-radius: 10px;
+}
+
+
+
+.update__emailContainer {
+    font-size: 40px;
+    margin-block-start: 2%;
+    margin-block-end: 2%;
+}
+
+
+
+.update__usernameContainer {
+    font-size: 40px;
+}
+
+
+.update__current {
+    margin-block-end: 1%;
+    font-size: 25px;
+}
+
+
+.update__form {
+    text-align: center;
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    margin-block-start: 2%;
+}
+
+
+
+.update__formTitle {
+    margin-block-end: 1%;
+}

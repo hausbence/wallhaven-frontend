@@ -2,14 +2,25 @@ import React, {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import Axios from "axios";
 import {useCookies} from "react-cookie";
+import edit from '../../resources/edit.png'
+import "./updateProfile.css"
+import {useHistory} from "react-router-dom";
 
 
 const UpdateProfile = () => {
     const [userData, setUserData] = useState([])
     const {handleSubmit, register, errors} = useForm();
     const [cookies, setCookie] = useCookies(["id", "email", "password"]);
-    const [nameAvailable, setNameAvailable] = useState(true)
+    const [emailVisible, setEmailVisible] = useState(false)
+    const [usernameVisible, setUsernameVisible] = useState(false)
+    const history = useHistory();
 
+
+
+    console.log(cookies.id)
+    if (cookies.id == 0) {
+        history.push("/login")
+    }
 
     const url = "http://localhost:8080"
 
@@ -34,18 +45,17 @@ const UpdateProfile = () => {
         console.log(result)
         if (!result) {
             updateUsername(values)
-        }
-        else {
+        } else {
             alert("this name is already used")
         }
     }
+
     async function emailUpdate(values) {
         const result = await emailCheck(values)
         console.log(result)
         if (!result) {
             updateEmail(values)
-        }
-        else {
+        } else {
             alert("this email is already used")
         }
     }
@@ -59,6 +69,7 @@ const UpdateProfile = () => {
             console.log(r)
         })
     }
+
     function updateEmail(values) {
         Axios.post(url + "/update/email/" + values.email + "/" + cookies.id).then(r => {
             console.log(r)
@@ -71,23 +82,51 @@ const UpdateProfile = () => {
     }
 
 
-    const newEmail = <div className="update__newEmail">
-        <form onSubmit={handleSubmit(onSubmitEmail)}>
-            <input name={"email"} type={"email"} placeholder={userData?.email} ref={register({
-                required: true,
-            })}/>
-            <button type={"submit"} className="update__submitBtn">Submit</button>
-        </form>
-    </div>
+    let newEmail;
+    let newUsername;
 
-    const newUsername = <div className="update__newUsername">
-        <form onSubmit={handleSubmit(onSubmitUsername)}>
-            <input name={"name"} type={"text"} placeholder={userData?.name} ref={register({
-                required: true,
-            })}/>
-            <button type={"submit"} className="update__submitBtn">Submit</button>
-        </form>
-    </div>
+
+
+    if (emailVisible) {
+        newEmail = <div className="update__newEmail update__form">
+            <p className={"update__formTitle"}>Your new email: </p>
+            <form onSubmit={handleSubmit(onSubmitEmail)}>
+                <input name={"email"} type={"email"} placeholder={userData?.email} ref={register({
+                    required: true,
+                })}/>c
+                <button type={"submit"} className="update__submitBtn">Submit</button>
+            </form>
+        </div>
+    }
+    else {
+        newEmail= ""
+    }
+
+    if (usernameVisible) {
+        newUsername = <div className="update__newUsername update__form">
+            <p className={"update__formTitle"}>Your new username: </p>
+            <form onSubmit={handleSubmit(onSubmitUsername)}>
+                <input name={"name"} type={"text"} placeholder={userData?.name} ref={register({
+                    required: true,
+                })}/>
+                <button type={"submit"} className="update__submitBtn">Submit</button>
+            </form>
+        </div>
+    }
+    else {
+        newUsername = ""
+    }
+
+
+    const editEmailFrom = () => {
+        setEmailVisible(true)
+        setUsernameVisible(false)
+    }
+
+    const editUsernameFrom = () => {
+        setUsernameVisible(true)
+        setEmailVisible(false)
+    }
 
 
     useEffect(() => {
@@ -97,14 +136,23 @@ const UpdateProfile = () => {
     let content = <div><h1>Loading...</h1></div>
 
     if (userData) {
-        content = <div>
-            <p>{userData?.email}</p>
-            <p>{userData?.name}</p>
+        content = <div><div className={"update__mainContainer"}>
+            <div className={"update__emailContainer"}>
+                <p className={"update__current"}>Your current email:</p>
+                <p>{userData?.email} <img className={"update__editIcon"} onClick={()=> (
+                editEmailFrom()
+            )} src={edit} alt=""/></p></div>
+            <div className={"update__usernameContainer"}>
+                <p className={"update__current"}>Your current username: </p>
+                <p>{userData?.name} <img className={"update__editIcon"} onClick={() => (
+                editUsernameFrom()
+            )} src={edit} alt=""/></p></div>
 
 
-            {newEmail}
-            {newUsername}
 
+        </div>
+        {newEmail}
+        {newUsername}
         </div>
     }
 

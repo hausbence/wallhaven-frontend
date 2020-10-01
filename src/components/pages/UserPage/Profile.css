@@ -1,58 +1,59 @@
-.friend-container {
-    text-align: center;
-    padding: 2px 16px;
+.profile-container {
+  max-width: 1200px;
+  margin: 30px auto;
 }
 
-.friend-card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 10%;
-    margin: auto;
-    border: 1px solid black;
-    padding: 1%;
+.profile-container h1 {
+  margin: 10px 0;
 }
 
-.friend-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    border:1px solid #39ff14;
+.profile-container p {
+  margin: 5px 0;
 }
 
-.add-friend-button {
-    display:inline-block;
-    padding:0.35em 1.2em;
-    border:0.1em solid #FFFFFF;
-    margin:0 0.3em 0.3em 0;
-    border-radius:0.12em;
-    box-sizing: border-box;
-    text-decoration:none;
-    font-family:'Roboto',sans-serif;
-    font-weight:300;
-    color:grey;
-    text-align:center;
-    transition: all 0.2s;
+.profile-container .friend-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
 }
 
-.add-friend-button:hover {
-    color:#000000;
-    background-color:#FFFFFF;
+.profile-container .friend-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 10px;
 }
 
-
-.userlogo-style {
-    max-width: 50%;
-    height: auto;
+.profile-wallpaper-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.imageStyle {
-    max-width: 100%;
-    height: auto;
+.profile-wallpaper-block {
+  border-radius: 5px;
+  display: block;
+  max-width: 300px;
+  max-height: 300px;
+  margin: 10px 20px;
 }
 
-.suggestion__container, .friends__container, .card__container {
-    margin-block-start: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    max-width: 1600px;
-    margin: 5px auto;
+.profile-wallpaper-container img {
+  object-fit: cover;
+}
+
+.profile-container .settings-button {
+  color: black;
+  background-color: #888888;
+  float: right;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border-radius: 5px;
+  border: 1px solid green;
+}
+
+.profile-container .settings-button:hover {
+  background-color: #555555;
+  border: 1px solid var(--text-color);
 }

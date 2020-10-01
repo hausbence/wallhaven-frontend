@@ -34,12 +34,10 @@ const Profile = () => {
       .catch((error) => console.log(error.response));
   }
 
-  useEffect(() => {
-    getFriends().then();
-    // getFavouriteIDS();
-    // getFavouriteIMGS();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+    useEffect(() => {
+        getFriends().then();
+    }, [])
 
   const getSubstring = (wid) => {
     return wid.substring(0, 2);
@@ -138,6 +136,55 @@ const Profile = () => {
     }, 300);
   };
 
+    if (friends && favouriteIDS ) {
+        console.log(uploaded)
+        console.log(friends[0]?.friends,  "ADA")
+        content = <div className="friend-container">
+            <h1>Hey, {cookies.username}</h1>
+            <h3>Here is a list of your friends: </h3>
+            <React.Fragment>
+                <div className="friend-container card__container">
+
+                    {friends.map((friend, i) => (
+                            <div key={i} className="friend-card">
+                                <p>{friend.name}</p>
+                                <img className="userlogo-style" src={userlogo} alt="userlogo"/>
+                            </div>
+                        ))
+                    }
+                </div>
+                <h1>Favorites: </h1>
+                {favs}
+                <h1>Your uploads: </h1>
+                <div>
+                    <div className="wallpaper-container">
+                        {uploaded.map((img, i) => (
+                            <div key={i}>
+                                <img className="wallpaper-block" style={uploadPic} src={`http://localhost:8080/image/${img.link}`} alt="userlogo"/>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div><h1>Friend suggestions:</h1>
+                    {friendSuggestions}
+                </div>
+            </React.Fragment>
+        </div>
+    }
+
+    function getImageLink (link) {
+        if (link.includes("http")) {
+            return link;
+        }
+        else {
+            return "http://localhost:8080/" + link
+        }
+
+    }
+
+    return (
+        content
+    )
   if (friends && favouriteIDS) {
     content = (
       <div className="profile-container">
@@ -157,7 +204,6 @@ const Profile = () => {
     );
   }
 
-  return content;
 };
 
 export default Profile;

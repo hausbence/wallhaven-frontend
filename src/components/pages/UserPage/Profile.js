@@ -38,8 +38,6 @@ const Profile = () => {
 
     useEffect(() => {
         getFriends().then();
-       // getFavouriteIDS();
-       // getFavouriteIMGS();
     }, [])
 
 
@@ -121,7 +119,7 @@ const Profile = () => {
                     <div className="wallpaper-container">
                         {uploaded.map((img, i) => (
                             <div key={i}>
-                                <img className="wallpaper-block" style={uploadPic} src={img.link} alt="userlogo"/>
+                                <img className="wallpaper-block" style={uploadPic} src={`http://localhost:8080/image/${img.link}`} alt="userlogo"/>
                             </div>
                         ))}
                     </div>
@@ -131,6 +129,16 @@ const Profile = () => {
                 </div>
             </React.Fragment>
         </div>
+    }
+
+    function getImageLink (link) {
+        if (link.includes("http")) {
+            return link;
+        }
+        else {
+            return "http://localhost:8080/" + link
+        }
+
     }
 
     return (

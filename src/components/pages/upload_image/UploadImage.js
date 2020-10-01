@@ -84,16 +84,6 @@ const UploadImage = () => {
       <h2 className="loginHeader">Upload an image</h2>
       <div className="form">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            className="input-style"
-            id={"image"}
-            name="image"
-            type="text"
-            placeholder="image url"
-            ref={register({
-              required: false,
-            })}
-          />
 
           <input
             id={"upload-button"}

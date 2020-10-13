@@ -124,7 +124,7 @@ const Profile = () => {
 
 
     const addFriend = (id) => {
-        Axios.post(`http://localhost:8080/addFriend/${cookies.id}/${id}`, {}).then(
+        Axios.post(`http://localhost:8080/addFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then(
             (response) => {
                 console.log(response);
             },

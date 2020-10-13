@@ -12,6 +12,7 @@ const UpdateProfile = () => {
   const { handleSubmit, register } = useForm();
   const [cookies] = useCookies(["id", "email", "password"]);
   const [emailVisible, setEmailVisible] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [usernameVisible, setUsernameVisible] = useState(false);
   const history = useHistory();
 
@@ -45,6 +46,10 @@ const UpdateProfile = () => {
     }
   }
 
+  async function passwordUpdate(values) {
+    updatePassword(values);
+  }
+
   async function emailUpdate(values) {
     const result = await emailCheck(values);
     if (!result) {
@@ -58,8 +63,17 @@ const UpdateProfile = () => {
     nameUpdate(values).then();
   };
 
+  const onSubmitPassword = (values) => {
+    if (values?.pw1 === values?.pw2) {
+      passwordUpdate(values).then();
+    }
+    else {
+      alert("Passwords should match, bro")
+    }
+  };
+
   function updateUsername(values) {
-    Axios.post(url + "/update/name/" + values.name + "/" + cookies.id, { headers: authHeader(cookies.user) }).then(
+    Axios.post(url + "/update/name/" + values.name + "/" + cookies.id,[],{ headers: authHeader(cookies.user) }).then(
       (r) => {
         console.log(r);
       }
@@ -67,7 +81,15 @@ const UpdateProfile = () => {
   }
 
   function updateEmail(values) {
-    Axios.post(url + "/update/email/" + values.email + "/" + cookies.id, { headers: authHeader(cookies.user) }).then(
+    Axios.post(url + "/update/email/" + values.email + "/" + cookies.id, [],{ headers: authHeader(cookies.user) }).then(
+      (r) => {
+        console.log(r);
+      }
+    );
+  }
+
+  function updatePassword(values) {
+    Axios.post(url + "/update/password/" + values.pw1 + "/" + cookies.id, [],{ headers: authHeader(cookies.user) }).then(
       (r) => {
         console.log(r);
       }
@@ -80,6 +102,8 @@ const UpdateProfile = () => {
 
   let newEmail = "";
   let newUsername = "";
+  let newPassword = "";
+
 
   if (emailVisible) {
     newEmail = (
@@ -119,14 +143,51 @@ const UpdateProfile = () => {
     );
   }
 
+  if (passwordVisible) {
+    newPassword = (
+      <div className="update-form">
+        <h1>Your new password: </h1>
+        <form onSubmit={handleSubmit(onSubmitPassword)}>
+          <input
+            name={"pw1"}
+            type={"password"}
+            minLength={6}
+            placeholder={userData?.name}
+            ref={register({
+              required: true,
+            })}
+          />
+          <input
+              name={"pw2"}
+              type={"password"}
+              minLength={6}
+              placeholder={userData?.name}
+              ref={register({
+                required: true,
+              })}
+          />
+          <button type={"submit"}>Submit</button>
+        </form>
+      </div>
+    );
+  }
+
+  const editPasswordForm = () => {
+    setEmailVisible(false);
+    setUsernameVisible(false);
+    setPasswordVisible(true)
+  }
+
   const editEmailFrom = () => {
     setEmailVisible(true);
     setUsernameVisible(false);
+    setPasswordVisible(false)
   };
 
   const editUsernameFrom = () => {
     setUsernameVisible(true);
     setEmailVisible(false);
+    setPasswordVisible(false)
   };
 
   useEffect(() => {
@@ -166,9 +227,13 @@ const UpdateProfile = () => {
               alt="edit-icon"
             />
           </p>
+          <p className="update-password" onClick={() => (
+              editPasswordForm()
+          )}>New Password</p>
         </div>
         {newEmail}
         {newUsername}
+        {newPassword}
       </div>
     );
   }

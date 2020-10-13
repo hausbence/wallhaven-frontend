@@ -115,10 +115,10 @@ const Profile = () => {
     if (uploaded.length > 0) {
         uploadContent = (
             <div>
-                <div className="wallpaper-container">
+                <div className="profile-wallpaper-container">
                     {uploaded.map((img, i) => (
                         <div key={i}>
-                            <img className="wallpaper-block" src={`http://localhost:8080/image/${img.link}`}
+                            <img className="profile-wallpaper-block" src={`http://localhost:8080/image/${img.link}`}
                                  alt="userlogo"/>
                         </div>
                     ))}

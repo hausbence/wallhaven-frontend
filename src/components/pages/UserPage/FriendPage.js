@@ -69,12 +69,14 @@ const FriendPage = () => {
       <div className="profile-wallpaper-container">
         {uploadedIMGS.map((fav, i) => (
           <div key={i}>
-            <img className="profile-wallpaper-block" src={fav.link} alt="" />
+            <img className="profile-wallpaper-block" src={`http://localhost:8080/image/${fav.link}`} alt="" />
           </div>
         ))}
       </div>
     );
   }
+
+  console.log(uploadedIMGS);
 
   return (
     <div className="profile-container">

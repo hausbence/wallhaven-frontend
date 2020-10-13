@@ -10,9 +10,10 @@ import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper"
 import TagPage from "./components/pages/TagPage/TagPage";
 import MainPage from "./components/pages/MainPage/MainPage";
 import Registration from "./components/pages/Registration";
-import Login from "./components/pages/WallpaperList/Login";
+import Login from "./components/security/Login";
 import Profile from "./components/pages/UserPage/Profile";
 import FriendPage from "./components/pages/UserPage/FriendPage";
+
 
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./components/layout/Theme";
@@ -20,6 +21,7 @@ import { GlobalStyles } from "./components/layout/GlobalStyles";
 import Users from "./components/pages/UserPage/Users";
 import UploadImage from "./components/pages/upload_image/UploadImage";
 import UpdateProfile from "./components/updateProfile/UpdateProfile";
+import Register from "./components/security/Register";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
@@ -78,7 +80,7 @@ const App = () => {
               <Route exact path="/search/:searchTerm" component={Search} />
               <Route exact path="/wallpaper/:id" component={SingleWallpaper} />
               <Route exact path="/tag/:id" component={TagPage} />
-              <Route exact path="/registration" component={Registration} />
+              <Route exact path="/registration" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/users" component={Users} />
               <Route exact path="/profile" component={Profile} />

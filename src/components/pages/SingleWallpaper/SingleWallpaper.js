@@ -124,7 +124,7 @@ const SingleWallpaper = (props) => {
 
   function extracted() {
     Axios.get(
-      `http://localhost:8080/favorite/${cookies?.id}/${wallpaper?.id}`, { headers: authHeader() }
+      `http://localhost:8080/favorite/${cookies?.id}/${wallpaper?.id}`, { headers: authHeader(cookies.user) }
     ).then((r) => {
       setFavorite(r.data);
     });

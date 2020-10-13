@@ -60,6 +60,11 @@ const Profile = () => {
                         <Link to={`/friend/${friend.id}`}>
                             <img className="userlogo-style" src={userlogo} alt="userlogo"/>
                         </Link>
+                        <button
+                            className="add-friend-button"
+                            onClick={() => removeFriend(friend.id)}>
+                            Unfollow
+                        </button>
                     </div>
                 ))}
             </div>
@@ -136,6 +141,22 @@ const Profile = () => {
             getFriends().then();
         }, 300);
     };
+
+    const removeFriend = (id) => {
+        Axios.post(`http://localhost:8080/removeFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then(
+            (response) => {
+                console.log(response);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+        setTimeout(() => {
+            getFriends().then();
+        }, 300);
+    };
+
+
     if (friends && favouriteIDS) {
         content = (
             <div className="profile-container">

@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import { useHistory } from "react-router-dom";
 import "./UploadImage.css";
 import Axios from "axios";
+import authHeader from "../../services/auth-header";
 
 const UploadImage = () => {
   const [cookies1, removeCookie] = useCookies([
@@ -35,7 +36,7 @@ const UploadImage = () => {
             onClick={() => {
               Axios.post(`http://localhost:8080/addwallpaper/${cookies.id}`, {
                 image: image,
-              }).then((r) => {
+              }, { headers: authHeader(cookies.user)}).then((r) => {
                 console.log(r);
                 history.push("/profile");
               });
@@ -61,7 +62,7 @@ const UploadImage = () => {
               Axios.post(
                   `http://localhost:8080/uploadwallpaper/${cookies.id}`,
                   formData,
-                  { headers: { "Content-Type": "multipart/form-data" } }
+                  { headers: { "Content-Type": "multipart/form-data"}, }
               ).then((r) => {
                 console.log(r);
                 history.push("/profile");

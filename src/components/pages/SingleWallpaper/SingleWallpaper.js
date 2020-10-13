@@ -6,6 +6,7 @@ import loadingGif from "../../../resources/loading2.gif";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import { useCookies } from "react-cookie";
+import authHeader from "../../services/auth-header";
 
 const SingleWallpaper = (props) => {
   const [cookies] = useCookies(["id", "email", "password", "username"]);
@@ -49,7 +50,7 @@ const SingleWallpaper = (props) => {
   const addFavorite = (wallpaperId) => {
     Axios.post(
       `http://localhost:8080/addfavorite/${cookies?.id}/${wallpaperId}`,
-      {}
+      {}, { headers: authHeader(cookies.user) }
     ).then((response) => {
       console.log(response);
     });
@@ -123,7 +124,7 @@ const SingleWallpaper = (props) => {
 
   function extracted() {
     Axios.get(
-      `http://localhost:8080/favorite/${cookies?.id}/${wallpaper?.id}`
+      `http://localhost:8080/favorite/${cookies?.id}/${wallpaper?.id}`, { headers: authHeader() }
     ).then((r) => {
       setFavorite(r.data);
     });

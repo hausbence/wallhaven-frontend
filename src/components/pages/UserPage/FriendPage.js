@@ -3,23 +3,27 @@ import Axios from "axios";
 import "./Profile.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import authHeader from "../../services/auth-header";
+import {useCookies} from "react-cookie";
+
 
 const FriendPage = () => {
   let friendId = useParams().id;
+  const [cookies, SetCookies] = useCookies(["user"])
 
   const [favourites, setFavourites] = useState([]);
   const [friendData, setFriendData] = useState([]);
   const [uploadedIMGS, setUploadedIMGSs] = useState([]);
 
   async function getFavourites() {
-    await Axios.get(`http://localhost:8080/friend/favourites/${friendId}`)
+    await Axios.get(`http://localhost:8080/friend/favourites/${friendId}`, { headers: authHeader(cookies.user) })
       .then((response) => {
         setFavourites(response.data);
-        return Axios.get(`http://localhost:8080/friend/${friendId}`);
+        return Axios.get(`http://localhost:8080/friend/${friendId}`, { headers: authHeader(cookies.user) });
       })
       .then((response) => {
         setFriendData(response.data);
-        return Axios.get(`http://localhost:8080/uploaded/${friendId}`);
+        return Axios.get(`http://localhost:8080/uploaded/${friendId}`, { headers: authHeader(cookies.user) });
       })
       .then((response) => {
         setUploadedIMGSs(response.data);

@@ -4,29 +4,30 @@ import {useCookies} from "react-cookie";
 import userlogo from "../../../resources/mini_default_user.png";
 import "./Profile.css";
 import {Link} from "react-router-dom";
+import authHeader from "../../services/auth-header";
 
 const Profile = () => {
     const [friends, setFriends] = useState([]);
     const [users, setUsers] = useState([]);
     const [uploaded, setUploaded] = useState([]);
     const [favouriteIDS, setFavouriteIDS] = useState([]);
-    const [cookies] = useCookies(["id", "username", "email", "password"]);
+    const [cookies] = useCookies(["id", "username", "email", "password", "user"]);
 
     async function getFriends() {
-        await Axios.get(`http://localhost:8080/friends/${cookies.id}`)
+        await Axios.get(`http://localhost:8080/friends/${cookies.id}`, { headers: authHeader(cookies.user) })
             .then((response) => {
                 setFriends(response.data);
                 return Axios.get(
-                    `http://localhost:8080/profile/favourites/${cookies.id}`
+                    `http://localhost:8080/profile/favourites/${cookies.id}`, { headers: authHeader(cookies.user) }
                 );
             })
             .then((response) => {
                 setFavouriteIDS(response.data);
-                return Axios.get(`http://localhost:8080/users/${cookies.id}`);
+                return Axios.get(`http://localhost:8080/users/${cookies.id}`, { headers: authHeader(cookies.user) });
             })
             .then((response) => {
                 setUsers(response.data);
-                return Axios.get(`http://localhost:8080/uploaded/${cookies.id}`);
+                return Axios.get(`http://localhost:8080/uploaded/${cookies.id}`, { headers: authHeader(cookies.user) });
             })
             .then((response) => {
                 setUploaded(response.data);

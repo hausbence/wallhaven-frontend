@@ -46,13 +46,13 @@ const Login = (props) => {
         .post(API_URL + "signin", {
           username,
           password,
-        }, {  headers: authHeader() })
+        }, )
         .then((response) => {
           if (response.data.accessToken) {
             setCookie("email", response.data.email, {path: "/"});
             setCookie("username", response.data.username, {path: "/"});
             setCookie("id", response.data.id, {path: "/"});
-            setCookie("user", JSON.stringify(response.data), {path: "/"} )
+            setCookie("user", response.data, {path: "/"} )
             // localStorage.setItem("user", JSON.stringify(response.data)); //localstorage
           }
 

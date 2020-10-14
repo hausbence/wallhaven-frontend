@@ -11,6 +11,7 @@ const UpdateProfile = () => {
   const [userData, setUserData] = useState([]);
   const { handleSubmit, register } = useForm();
   const [cookies, setCookies] = useCookies(["id", "email", "password", "username"]);
+  const [cookies1, removeCookie] = useCookies(["id", "email", "password", "username"]);
   const [emailVisible, setEmailVisible] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [usernameVisible, setUsernameVisible] = useState(false);
@@ -41,7 +42,9 @@ const UpdateProfile = () => {
     const result = await nameCheck(values);
     if (!result) {
       updateUsername(values);
-      setCookies("username", values.name, {path: "/"});
+      setTimeout(() => {
+        handleLogout()
+      }, 350)
     } else {
       alert("this name is already used");
     }
@@ -55,7 +58,9 @@ const UpdateProfile = () => {
     const result = await emailCheck(values);
     if (!result) {
       updateEmail(values);
-      setCookies("email", values.email, {path: "/"});
+      setTimeout(() => {
+        handleLogout()
+      }, 350)
     } else {
       alert("this email is already used");
     }
@@ -68,6 +73,10 @@ const UpdateProfile = () => {
   const onSubmitPassword = (values) => {
     if (values?.pw1 === values?.pw2) {
       passwordUpdate(values).then();
+      setTimeout(() => {
+        handleLogout()
+      }, 350)
+
     }
     else {
       alert("Passwords should match, bro")
@@ -173,6 +182,14 @@ const UpdateProfile = () => {
       </div>
     );
   }
+  const handleLogout = () => {
+    alert("Your setting are changed, please log in again!")
+    removeCookie("email", "");
+    removeCookie("password", "");
+    removeCookie("id", 0);
+    removeCookie("username", "");
+    history.push("/login")
+  };
 
   const editPasswordForm = () => {
     setEmailVisible(false);

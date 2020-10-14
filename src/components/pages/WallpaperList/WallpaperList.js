@@ -110,8 +110,8 @@ const WallpaperList = (props) => {
               </Link>
             </div>
           ))}
-          {!props.mainpage ? pageButtons : null}
         </div>
+        {!props.mainpage ? pageButtons : null}
       </React.Fragment>
     );
   } else if (fetchedData && !wallpapers) {

@@ -13,7 +13,6 @@ import Login from "./components/security/Login";
 import Profile from "./components/pages/UserPage/Profile";
 import FriendPage from "./components/pages/UserPage/FriendPage";
 
-
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./components/layout/Theme";
 import { GlobalStyles } from "./components/layout/GlobalStyles";
@@ -23,7 +22,7 @@ import UpdateProfile from "./components/updateProfile/UpdateProfile";
 import Register from "./components/security/Register";
 
 const App = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
     if (theme === "light") {

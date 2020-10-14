@@ -129,28 +129,14 @@ const Profile = () => {
 
 
     const addFriend = (id) => {
-        Axios.post(`http://localhost:8080/addFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then(
-            (response) => {
-                console.log(response);
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
+        Axios.post(`http://localhost:8080/addFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then();
         setTimeout(() => {
             getFriends().then();
         }, 300);
     };
 
     const removeFriend = (id) => {
-        Axios.post(`http://localhost:8080/removeFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then(
-            (response) => {
-                console.log(response);
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
+        Axios.post(`http://localhost:8080/removeFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then();
         setTimeout(() => {
             getFriends().then();
         }, 300);

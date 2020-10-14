@@ -16,25 +16,14 @@ const Users = () => {
 
   useEffect(() => {
     extracted();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(cookies);
   const addFriend = (id) => {
-    Axios.post(`http://localhost:8080/addFriend/${cookies.id}/${id}`, { headers: authHeader(cookies.user) }, {}).then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-    console.log(id);
+    Axios.post(`http://localhost:8080/addFriend/${cookies.id}/${id}`, { headers: authHeader(cookies.user) }, {}).then();
     setTimeout(() => {
       extracted();
     }, 500);
   };
-  console.log(users);
   return (
     <div className={"user__container"}>
       <h1>Users</h1>

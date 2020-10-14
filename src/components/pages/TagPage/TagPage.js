@@ -3,10 +3,8 @@ import { useParams } from "react-router-dom";
 import { useHttp } from "../../../hooks/http";
 import WallpaperList from "../WallpaperList/WallpaperList";
 
-const TagPage = (props) => {
+const TagPage = () => {
   let { id } = useParams();
-  // const [pageByTag, setPageByTag] = useState(
-  //     `https://wallhaven.cc/api/v1/search?categories=100&purity=100&q=+id:${id}`)
   const [wallpaperUrl] = useState(
     `https://wallhaven.cc/api/v1/search?categories=100&purity=100&q=+id:${id}`
   );

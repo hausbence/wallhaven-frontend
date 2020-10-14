@@ -9,7 +9,6 @@ import Search from "./components/pages/Search";
 import SingleWallpaper from "./components/pages/SingleWallpaper/SingleWallpaper";
 import TagPage from "./components/pages/TagPage/TagPage";
 import MainPage from "./components/pages/MainPage/MainPage";
-import Registration from "./components/pages/Registration";
 import Login from "./components/security/Login";
 import Profile from "./components/pages/UserPage/Profile";
 import FriendPage from "./components/pages/UserPage/FriendPage";

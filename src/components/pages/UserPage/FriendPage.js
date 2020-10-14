@@ -9,7 +9,7 @@ import {useCookies} from "react-cookie";
 
 const FriendPage = () => {
   let friendId = useParams().id;
-  const [cookies, SetCookies] = useCookies(["user"])
+  const [cookies] = useCookies(["user"])
 
   const [favourites, setFavourites] = useState([]);
   const [friendData, setFriendData] = useState([]);
@@ -33,7 +33,6 @@ const FriendPage = () => {
 
   useEffect(() => {
     getFavourites().then();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getSubstring = (wid) => {
@@ -75,8 +74,6 @@ const FriendPage = () => {
       </div>
     );
   }
-
-  console.log(uploadedIMGS);
 
   return (
     <div className="profile-container">

@@ -169,19 +169,6 @@ const Profile = () => {
             </div>
         );
     }
-  const addFriend = (id) => {
-    Axios.post(`http://localhost:8080/addFriend/${cookies.id}/${id}`, {}).then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-    setTimeout(() => {
-      getFriends().then();
-    }, 300);
-  };
   if (friends && favouriteIDS) {
     content = (
       <div className="profile-container">

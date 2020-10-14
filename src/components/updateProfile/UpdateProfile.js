@@ -10,7 +10,7 @@ import authHeader from "../services/auth-header";
 const UpdateProfile = () => {
   const [userData, setUserData] = useState([]);
   const { handleSubmit, register } = useForm();
-  const [cookies] = useCookies(["id", "email", "password"]);
+  const [cookies, setCookies] = useCookies(["id", "email", "password", "username"]);
   const [emailVisible, setEmailVisible] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [usernameVisible, setUsernameVisible] = useState(false);
@@ -41,6 +41,7 @@ const UpdateProfile = () => {
     const result = await nameCheck(values);
     if (!result) {
       updateUsername(values);
+      setCookies("username", values.name, {path: "/"});
     } else {
       alert("this name is already used");
     }
@@ -54,6 +55,7 @@ const UpdateProfile = () => {
     const result = await emailCheck(values);
     if (!result) {
       updateEmail(values);
+      setCookies("email", values.email, {path: "/"});
     } else {
       alert("this email is already used");
     }

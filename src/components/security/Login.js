@@ -4,7 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import "../pages/WallpaperList/Login.css";
 import axios from "axios";
-import {useCookies} from "react-cookie";
+import { useCookies } from "react-cookie";
 
 const required = (value) => {
   if (!value) {
@@ -19,8 +19,12 @@ const required = (value) => {
 const Login = (props) => {
   const API_URL = "http://localhost:8080/api/auth/";
 
-
-  const [cookies, setCookie, removeCookie] = useCookies(["id","email", "username", "user"]);
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "id",
+    "email",
+    "username",
+    "user",
+  ]);
   const form = useRef();
   const checkBtn = useRef();
 
@@ -41,23 +45,22 @@ const Login = (props) => {
 
   const submitLogin = (username, password) => {
     return axios
-        .post(API_URL + "signin", {
-          username,
-          password,
-        }, )
-        .then((response) => {
-          if (response.data.accessToken) {
-            setCookie("email", response.data.email, {path: "/"});
-            setCookie("username", response.data.username, {path: "/"});
-            setCookie("id", response.data.id, {path: "/"});
-            setCookie("user", response.data, {path: "/"} )
-            // localStorage.setItem("user", JSON.stringify(response.data)); //localstorage
-          }
+      .post(API_URL + "signin", {
+        username,
+        password,
+      })
+      .then((response) => {
+        if (response.data.accessToken) {
+          setCookie("email", response.data.email, { path: "/" });
+          setCookie("username", response.data.username, { path: "/" });
+          setCookie("id", response.data.id, { path: "/" });
+          setCookie("user", response.data, { path: "/" });
+          // localStorage.setItem("user", JSON.stringify(response.data)); //localstorage
+        }
 
-          return response.data;
-        });
+        return response.data;
+      });
   };
-
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -91,49 +94,50 @@ const Login = (props) => {
   };
 
   return (
-        <div className="form">
-          <h2 className="loginHeader">Login</h2>
-          <Form onSubmit={handleLogin} ref={form}>
-              <label htmlFor="username">Username</label>
-              <Input
-                type="text"
-                className="input-style"
-                name="username"
-                value={username}
-                onChange={onChangeUsername}
-                validations={[required]}
-              />
+    <div className="form">
+      <h2 className="loginHeader">Login</h2>
+      <Form onSubmit={handleLogin} ref={form}>
+        <label htmlFor="username">Username</label>
+        <Input
+          type="text"
+          className="input-style"
+          name="username"
+          value={username}
+          placeholder="Username"
+          onChange={onChangeUsername}
+          validations={[required]}
+        />
 
-              <label htmlFor="password">Password</label>
-              <Input
-                type="password"
-                className="input-style"
-                name="password"
-                value={password}
-                onChange={onChangePassword}
-                validations={[required]}
-              />
+        <label htmlFor="password">Password</label>
+        <Input
+          type="password"
+          className="input-style"
+          name="password"
+          value={password}
+          placeholder="Password"
+          onChange={onChangePassword}
+          validations={[required]}
+        />
 
-            <div className="form-group">
-              <button className="button" disabled={loading}>
-                {loading && (
-                  <span className="spinner-border spinner-border-sm"> </span>
-                )}
-                <span>Login</span>
-              </button>
-            </div>
-
-
-            {message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  {message}
-                </div>
-              </div>
+        <div className="form-group">
+          <button className="button" disabled={loading}>
+            {loading && (
+              <span className="spinner-border spinner-border-sm"> </span>
             )}
-            <CheckButton style={{ display: "none" }} ref={checkBtn} />
-          </Form>
+            <span>Login</span>
+          </button>
         </div>
+
+        {message && (
+          <div className="form-group">
+            <div className="alert alert-danger" role="alert">
+              {message}
+            </div>
+          </div>
+        )}
+        <CheckButton style={{ display: "none" }} ref={checkBtn} />
+      </Form>
+    </div>
   );
 };
 

@@ -1,14 +1,14 @@
-#Wallhaven
+# Wallhaven
 ---
-####Description
+#### Description
 This repository is the front end part of our Wallhaven project, using React.
 We created this project with the help of the API of a famous page, called <a href="https://wallhaven.cc">Wallhaven</a>.
 
-####API we used
+#### API we used
 <a href="https://wallhaven.cc/help/api">API v1 Documentation</a>
 
 
-####In the project directory, you can run
+#### In the project directory, you can run
 
 ### `npm start`
 

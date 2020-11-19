@@ -50,7 +50,7 @@ const SingleWallpaper = (props) => {
 
     const addFavorite = (wallpaperId) => {
         Axios.post(
-            url.user_service + `favorite/addfavorite/${cookies?.id}/${wallpaperId}`,
+            url.user_service + `/favorite/add/${cookies?.id}/${wallpaperId}`,
             {}, {headers: authHeader(cookies.user)}
         ).then((response) => {
             console.log(response);
@@ -118,7 +118,7 @@ const SingleWallpaper = (props) => {
 
     function extracted() {
         Axios.get(
-            url.user_service + `favorite/favorite/${cookies?.id}/${wallpaper?.id}`, {headers: authHeader(cookies.user)}
+            url.user_service + `/favorite/is-fav/${cookies?.id}/${wallpaper?.id}`, {headers: authHeader(cookies.user)}
         ).then((r) => {
             setFavorite(r.data);
         });

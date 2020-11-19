@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import Axios from "axios";
 import {useCookies} from "react-cookie";
 import authHeader from "../../services/auth-header";
+import url from "../../../util/url"
 
 const SingleWallpaper = (props) => {
     const [cookies] = useCookies(["id", "email", "password", "username"]);
@@ -18,8 +19,6 @@ const SingleWallpaper = (props) => {
         current.match.params.id,
     ]}`;
     const [isLoading, fetchedData] = useHttp(wallpaperUrl, [wallpaperUrl]);
-
-    const url = "http://localhost:8762/user-service/";
 
     const wallpaper = fetchedData ? fetchedData.data.data : null;
 
@@ -51,7 +50,7 @@ const SingleWallpaper = (props) => {
 
     const addFavorite = (wallpaperId) => {
         Axios.post(
-            url + `favorite/addfavorite/${cookies?.id}/${wallpaperId}`,
+            url.user_service + `favorite/addfavorite/${cookies?.id}/${wallpaperId}`,
             {}, {headers: authHeader(cookies.user)}
         ).then((response) => {
             console.log(response);
@@ -119,7 +118,7 @@ const SingleWallpaper = (props) => {
 
     function extracted() {
         Axios.get(
-            url + `favorite/favorite/${cookies?.id}/${wallpaper?.id}`, {headers: authHeader(cookies.user)}
+            url.user_service + `favorite/favorite/${cookies?.id}/${wallpaper?.id}`, {headers: authHeader(cookies.user)}
         ).then((r) => {
             setFavorite(r.data);
         });

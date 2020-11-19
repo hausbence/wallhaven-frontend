@@ -3,13 +3,14 @@ import Axios from "axios";
 import "./users.css";
 import { useCookies } from "react-cookie";
 import authHeader from "../../services/auth-header";
+import url from "../../../util/url";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [cookies] = useCookies(["id", "email", "password", "user"]);
 
   function extracted() {
-    Axios.get(`http://localhost:8080/users/${cookies.id}`, { headers: authHeader(cookies.user) }).then((r) =>
+    Axios.get(url.user_service + `/users/${cookies.id}`, { headers: authHeader(cookies.user) }).then((r) =>
       setUsers(r.data)
     );
   }
@@ -19,7 +20,7 @@ const Users = () => {
   }, []);
 
   const addFriend = (id) => {
-    Axios.post(`http://localhost:8080/addFriend/${cookies.id}/${id}`, { headers: authHeader(cookies.user) }, {}).then();
+    Axios.post(url.user_service + `/addFriend/${cookies.id}/${id}`, { headers: authHeader(cookies.user) }, {}).then();
     setTimeout(() => {
       extracted();
     }, 500);

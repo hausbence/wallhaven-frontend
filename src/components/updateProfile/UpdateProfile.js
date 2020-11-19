@@ -6,6 +6,7 @@ import edit from "../../resources/edit.png";
 import "./UpdateProfile.css";
 import { useHistory } from "react-router-dom";
 import authHeader from "../services/auth-header";
+import url from "../../../util/url";
 
 const UpdateProfile = () => {
   const [userData, setUserData] = useState([]);
@@ -21,18 +22,16 @@ const UpdateProfile = () => {
     history.push("/login");
   }
 
-  const url = "http://localhost:8080";
-
   const nameCheck = (values) => {
     return new Promise((resolve) => {
-      Axios.get(url + "/available/name/" + values.name, { headers: authHeader(cookies.user) }).then((r) => {
+      Axios.get(url.user_service + "/available/name/" + values.name, { headers: authHeader(cookies.user) }).then((r) => {
         resolve(r.data);
       });
     });
   };
   const emailCheck = (values) => {
     return new Promise((resolve) => {
-      Axios.get(url + "/available/email/" + values.email, { headers: authHeader(cookies.user) }).then((r) => {
+      Axios.get(url.user_service + "/available/email/" + values.email, { headers: authHeader(cookies.user) }).then((r) => {
         resolve(r.data);
       });
     });
@@ -84,7 +83,7 @@ const UpdateProfile = () => {
   };
 
   function updateUsername(values) {
-    Axios.post(url + "/update/name/" + values.name + "/" + cookies.id,[],{ headers: authHeader(cookies.user) }).then(
+    Axios.post(url.user_service + "/update/name/" + values.name + "/" + cookies.id,[],{ headers: authHeader(cookies.user) }).then(
       (r) => {
         console.log(r);
       }
@@ -92,7 +91,7 @@ const UpdateProfile = () => {
   }
 
   function updateEmail(values) {
-    Axios.post(url + "/update/email/" + values.email + "/" + cookies.id, [],{ headers: authHeader(cookies.user) }).then(
+    Axios.post(url.user_service + "/update/email/" + values.email + "/" + cookies.id, [],{ headers: authHeader(cookies.user) }).then(
       (r) => {
         console.log(r);
       }
@@ -100,7 +99,7 @@ const UpdateProfile = () => {
   }
 
   function updatePassword(values) {
-    Axios.post(url + "/update/password/" + values.pw1 + "/" + cookies.id, [],{ headers: authHeader(cookies.user) }).then(
+    Axios.post(url.user_service + "/update/password/" + values.pw1 + "/" + cookies.id, [],{ headers: authHeader(cookies.user) }).then(
       (r) => {
         console.log(r);
       }
@@ -210,7 +209,7 @@ const UpdateProfile = () => {
   };
 
   useEffect(() => {
-    Axios.get(url + "/data/" + cookies.id, { headers: authHeader(cookies.user) }).then((r) => setUserData(r.data));
+    Axios.get(url.user_service + "/data/" + cookies.id, { headers: authHeader(cookies.user) }).then((r) => setUserData(r.data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData]);
 

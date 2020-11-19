@@ -24,7 +24,7 @@ const UploadImage = () => {
     let submitButton = "";
     let picture = "";
 
-    if (image !== null) {
+    /* if (image !== null) {
         picture = <img className={"wallpaper__img"} src={image} alt=""/>;
         submitButton = (
             <button
@@ -41,7 +41,7 @@ const UploadImage = () => {
             </button>
         );
         message = <p>Click on upload if you can see your wallpaper</p>;
-    }
+    } */
 
     if (uploadedImage.size > 0) {
         const objectURL = window.URL.createObjectURL(uploadedImage);

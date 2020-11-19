@@ -6,6 +6,8 @@ import settingsIcon from "../../../resources/settings_icon.png";
 import "./Profile.css";
 import {Link} from "react-router-dom";
 import authHeader from "../../services/auth-header";
+import url from "../../../util/url";
+
 
 const Profile = () => {
   const [friends, setFriends] = useState([]);
@@ -15,29 +17,26 @@ const Profile = () => {
   const [cookies] = useCookies(["id", "username", "email", "password", "user"]);
 
 
-  const url = "http://localhost:8762/user-service/";
-
-
   async function getFriends() {
-    await Axios.get(url + `friends/${cookies.id}`, {
+    await Axios.get(url.user_service + `/friends/${cookies.id}`, {
       headers: authHeader(cookies.user),
     })
       .then((response) => {
         setFriends(response.data);
         return Axios.get(
-          url + `/favorite/profile/favourites/${cookies.id}`,
+          url.user_service + `/favorite/profile/favourites/${cookies.id}`,
           { headers: authHeader(cookies.user) }
         );
       })
       .then((response) => {
         setFavouriteIDS(response.data);
-        return Axios.get(`http://localhost:8080/users/${cookies.id}`, {
+        return Axios.get( url.user_service + `/users/${cookies.id}`, {
           headers: authHeader(cookies.user),
         });
       })
       .then((response) => {
         setUsers(response.data);
-        return Axios.get(url + `/uploaded/uploaded/${cookies.id}`, {
+        return Axios.get(url.user_service + `/uploaded/uploaded/${cookies.id}`, {
           headers: authHeader(cookies.user),
         });
       })
@@ -133,7 +132,7 @@ const Profile = () => {
                 <div className="profile-wallpaper-container">
                     {uploaded.map((img, i) => (
                         <div key={i}>
-                            <img className="profile-wallpaper-block" src={url  + `/uploaded/image/${img.link}`}
+                            <img className="profile-wallpaper-block" src={url.user_service  + `/uploaded/image/${img.link}`}
                                  alt="userlogo"/>
                         </div>
                     ))}

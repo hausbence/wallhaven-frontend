@@ -143,14 +143,14 @@ const Profile = () => {
 
 
     const addFriend = (id) => {
-        Axios.post(url + `addFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then();
+        Axios.post(url.user_service + `/addFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then();
         setTimeout(() => {
             getFriends().then();
         }, 300);
     };
 
     const removeFriend = (id) => {
-        Axios.post(url + `removeFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then();
+        Axios.post(url.user_service + `/removeFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then();
         setTimeout(() => {
             getFriends().then();
         }, 300);

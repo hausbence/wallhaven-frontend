@@ -6,7 +6,7 @@ import edit from "../../resources/edit.png";
 import "./UpdateProfile.css";
 import { useHistory } from "react-router-dom";
 import authHeader from "../services/auth-header";
-import url from "../../../util/url";
+import url from "../../util/url";
 
 const UpdateProfile = () => {
   const [userData, setUserData] = useState([]);

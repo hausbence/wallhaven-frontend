@@ -24,7 +24,7 @@ const Profile = () => {
       .then((response) => {
         setFriends(response.data);
         return Axios.get(
-          url.user_service + `/favorite/profile/favourites/${cookies.id}`,
+          url.user_service + `/favorite/profile/${cookies.id}`,
           { headers: authHeader(cookies.user) }
         );
       })
@@ -36,7 +36,7 @@ const Profile = () => {
       })
       .then((response) => {
         setUsers(response.data);
-        return Axios.get(url.user_service + `/uploaded/uploaded/${cookies.id}`, {
+        return Axios.get(url.user_service + `/uploaded/${cookies.id}`, {
           headers: authHeader(cookies.user),
         });
       })

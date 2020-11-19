@@ -55,7 +55,7 @@ const UploadImage = () => {
             <button
                 onClick={() => {
                     Axios.post(
-                        url.uploaded_service +  `/uploaded/uploadwallpaper/${cookies.id}`,
+                        url.user_service +  `/uploaded/uploadwallpaper/${cookies.id}`,
                         formData,
                         {headers: {"Content-Type": "multipart/form-data"},}
                     ).then((r) => {

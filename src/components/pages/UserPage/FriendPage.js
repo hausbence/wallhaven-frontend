@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import authHeader from "../../services/auth-header";
 import {useCookies} from "react-cookie";
+import url from "../../../util/url";
 
 
 const FriendPage = () => {
@@ -16,14 +17,14 @@ const FriendPage = () => {
   const [uploadedIMGS, setUploadedIMGSs] = useState([]);
 
   async function getFavourites() {
-    await Axios.get(`http://localhost:8080/friend/favourites/${friendId}`, { headers: authHeader(cookies.user) })
+    await Axios.get(url.user_service + `favorite/friend/${friendId}`, { headers: authHeader(cookies.user) })
       .then((response) => {
         setFavourites(response.data);
-        return Axios.get(`http://localhost:8080/friend/${friendId}`, { headers: authHeader(cookies.user) });
+        return Axios.get(url.user_service + `/friend/${friendId}`, { headers: authHeader(cookies.user) });
       })
       .then((response) => {
         setFriendData(response.data);
-        return Axios.get(`http://localhost:8080/uploaded/${friendId}`, { headers: authHeader(cookies.user) });
+        return Axios.get(url.user_service +  `/uploaded/${friendId}`, { headers: authHeader(cookies.user) });
       })
       .then((response) => {
         setUploadedIMGSs(response.data);
@@ -68,7 +69,7 @@ const FriendPage = () => {
       <div className="profile-wallpaper-container">
         {uploadedIMGS.map((fav, i) => (
           <div key={i}>
-            <img className="profile-wallpaper-block" src={`http://localhost:8080/image/${fav.link}`} alt="" />
+            <img className="profile-wallpaper-block" src={url.user_service +  `uploaded/image/${fav.link}`} alt="" />
           </div>
         ))}
       </div>

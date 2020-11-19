@@ -5,6 +5,7 @@ import {useHistory} from "react-router-dom";
 import "./UploadImage.css";
 import Axios from "axios";
 import authHeader from "../../services/auth-header";
+import url from "../../../util/url";
 
 const UploadImage = () => {
     const {handleSubmit, register, errors} = useForm();
@@ -17,9 +18,6 @@ const UploadImage = () => {
     ]);
     const [image, setImage] = useState(null);
 
-    const url = "http://localhost:8762/user-service/";
-
-
     const [uploadedImage, setUploadedImage] = useState({});
 
     let message = "";
@@ -31,7 +29,7 @@ const UploadImage = () => {
         submitButton = (
             <button
                 onClick={() => {
-                    Axios.post(`http://localhost:8080/addwallpaper/${cookies.id}`, {
+                    Axios.post(`http://localhost:8080/addwallpaper/${cookies.id}`, { <!-- ez meg mi a csuda?  -->
                         image: image,
                     }, {headers: authHeader(cookies.user)}).then((r) => {
                         console.log(r);
@@ -57,7 +55,7 @@ const UploadImage = () => {
             <button
                 onClick={() => {
                     Axios.post(
-                        `http://localhost:8080/uploadwallpaper/${cookies.id}`,
+                        url.uploaded_service +  `/uploaded/uploadwallpaper/${cookies.id}`,
                         formData,
                         {headers: {"Content-Type": "multipart/form-data"},}
                     ).then((r) => {

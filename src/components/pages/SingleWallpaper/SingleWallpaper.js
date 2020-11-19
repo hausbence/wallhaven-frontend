@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import Axios from "axios";
 import {useCookies} from "react-cookie";
 import authHeader from "../../services/auth-header";
-import url from "../../../util/url"
+import url from "../../../util/url";
 
 const SingleWallpaper = (props) => {
     const [cookies] = useCookies(["id", "email", "password", "username"]);

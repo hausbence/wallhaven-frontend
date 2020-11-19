@@ -17,6 +17,9 @@ const UploadImage = () => {
     ]);
     const [image, setImage] = useState(null);
 
+    const url = "http://localhost:8762/user-service/";
+
+
     const [uploadedImage, setUploadedImage] = useState({});
 
     let message = "";

@@ -19,6 +19,8 @@ const SingleWallpaper = (props) => {
     ]}`;
     const [isLoading, fetchedData] = useHttp(wallpaperUrl, [wallpaperUrl]);
 
+    const url = "http://localhost:8762/user-service/";
+
     const wallpaper = fetchedData ? fetchedData.data.data : null;
 
     let content = (
@@ -49,7 +51,7 @@ const SingleWallpaper = (props) => {
 
     const addFavorite = (wallpaperId) => {
         Axios.post(
-            `http://localhost:8080/addfavorite/${cookies?.id}/${wallpaperId}`,
+            url + `favorite/addfavorite/${cookies?.id}/${wallpaperId}`,
             {}, {headers: authHeader(cookies.user)}
         ).then((response) => {
             console.log(response);
@@ -117,7 +119,7 @@ const SingleWallpaper = (props) => {
 
     function extracted() {
         Axios.get(
-            `http://localhost:8080/favorite/${cookies?.id}/${wallpaper?.id}`, {headers: authHeader(cookies.user)}
+            url + `favorite/favorite/${cookies?.id}/${wallpaper?.id}`, {headers: authHeader(cookies.user)}
         ).then((r) => {
             setFavorite(r.data);
         });

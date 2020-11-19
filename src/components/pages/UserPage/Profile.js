@@ -14,14 +14,18 @@ const Profile = () => {
   const [favouriteIDS, setFavouriteIDS] = useState([]);
   const [cookies] = useCookies(["id", "username", "email", "password", "user"]);
 
+
+  const url = "http://localhost:8762/user-service/";
+
+
   async function getFriends() {
-    await Axios.get(`http://localhost:8080/friends/${cookies.id}`, {
+    await Axios.get(url + `friends/${cookies.id}`, {
       headers: authHeader(cookies.user),
     })
       .then((response) => {
         setFriends(response.data);
         return Axios.get(
-          `http://localhost:8080/profile/favourites/${cookies.id}`,
+          url + `/favorite/profile/favourites/${cookies.id}`,
           { headers: authHeader(cookies.user) }
         );
       })
@@ -33,7 +37,7 @@ const Profile = () => {
       })
       .then((response) => {
         setUsers(response.data);
-        return Axios.get(`http://localhost:8080/uploaded/${cookies.id}`, {
+        return Axios.get(url + `/uploaded/uploaded/${cookies.id}`, {
           headers: authHeader(cookies.user),
         });
       })
@@ -56,6 +60,9 @@ const Profile = () => {
       <h1>Loading...</h1>
     </div>
   );
+
+    console.log(favouriteIDS);
+
 
     let friendsContent = <p>You are not following anyone.</p>;
     if (friends.length > 0) {
@@ -126,7 +133,7 @@ const Profile = () => {
                 <div className="profile-wallpaper-container">
                     {uploaded.map((img, i) => (
                         <div key={i}>
-                            <img className="profile-wallpaper-block" src={`http://localhost:8080/image/${img.link}`}
+                            <img className="profile-wallpaper-block" src={url  + `/uploaded/image/${img.link}`}
                                  alt="userlogo"/>
                         </div>
                     ))}
@@ -137,14 +144,14 @@ const Profile = () => {
 
 
     const addFriend = (id) => {
-        Axios.post(`http://localhost:8080/addFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then();
+        Axios.post(url + `addFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then();
         setTimeout(() => {
             getFriends().then();
         }, 300);
     };
 
     const removeFriend = (id) => {
-        Axios.post(`http://localhost:8080/removeFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then();
+        Axios.post(url + `removeFriend/${cookies.id}/${id}`, {}, { headers: authHeader(cookies.user) } ).then();
         setTimeout(() => {
             getFriends().then();
         }, 300);

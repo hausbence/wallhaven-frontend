@@ -163,7 +163,7 @@ const UpdateProfile = () => {
             name={"pw1"}
             type={"password"}
             minLength={6}
-            placeholder={userData?.name}
+            placeholder={"new Password"}
             ref={register({
               required: true,
             })}
@@ -172,7 +172,7 @@ const UpdateProfile = () => {
               name={"pw2"}
               type={"password"}
               minLength={6}
-              placeholder={userData?.name}
+              placeholder={"new Password"}
               ref={register({
                 required: true,
               })}

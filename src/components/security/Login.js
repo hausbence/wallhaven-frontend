@@ -17,7 +17,7 @@ const required = (value) => {
 };
 
 const Login = (props) => {
-  const API_URL = "http://localhost:8080/api/auth/";
+  const API_URL = "http://localhost:8762/user-service/auth/";
 
   const [cookies, setCookie, removeCookie] = useCookies([
     "id",

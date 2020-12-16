@@ -1,5 +1,7 @@
 # Wallhaven
 ---
+[!alt text](https://drive.google.com/file/d/1k8fPvA-rzjt8IxwnUrtAi4kCCUcolP9U/view?usp=sharing)
+
 #### Description
 This repository is the front end part of our Wallhaven project, using React.
 We created this project with the help of the API of a famous page, called <a href="https://wallhaven.cc">Wallhaven</a>.

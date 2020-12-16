@@ -1,5 +1,7 @@
 # Wallhaven
 ---
+![Alt text](https://github.com/maryn1421/wallhaven/blob/development/src/resources/screenshot.png?raw=true)
+
 #### Description
 This repository is the front end part of our Wallhaven project, using React.
 We created this project with the help of the API of a famous page, called <a href="https://wallhaven.cc">Wallhaven</a>.

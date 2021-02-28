@@ -12,6 +12,10 @@ We created this project with the help of the API of a famous page, called <a hre
 
 #### In the project directory, you can run
 
+### `npm install`
+
+after it:
+
 ### `npm start`
 
 Runs the app in the development mode.
